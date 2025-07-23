@@ -1,0 +1,35 @@
+[
+  {
+    "_id": "123",
+    "country": "Germany",
+    "city": "Berlin",
+    "description": "Blabla",
+    "members": [
+      {
+        "userId": "1234"
+      }
+    ]
+  },
+  {
+    "_id": "123",
+    "country": "Germany",
+    "city": "Hamburg",
+    "description": "Blabla",
+    "members": [
+      {
+        "userId": "1234"
+      }
+    ]
+  },
+  {
+    "_id": "123",
+    "country": "Germany",
+    "city": "Munich",
+    "description": "Blabla",
+    "members": [
+      {
+        "userId": "1234"
+      }
+    ]
+  }
+]

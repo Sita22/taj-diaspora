@@ -1,0 +1,22 @@
+.post-teaser {
+  border: 1px solid rgb(225, 225, 225);
+  border-radius: 5px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.post-details {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 5px;
+}
+
+.post-teaser p {
+  margin: 0;
+  width: auto;
+  flex: none;
+  font-size: 12px;
+  color: rgb(138, 138, 138);
+}

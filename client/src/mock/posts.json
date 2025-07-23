@@ -1,0 +1,58 @@
+[
+  {
+    "_id": "12345",
+    "communityId": "123",
+    "userId": "1234",
+    "title": "Nouruz celebration in Tiergarten",
+    "content": "Blabla",
+    "timestamp": "23.07.2025",
+    "likes": 23,
+    "comments": [
+      {
+        "commentId": "123456"
+      }
+    ]
+  },
+  {
+    "_id": "45645",
+    "communityId": "123",
+    "userId": "1234",
+    "title": "Tajik cultural night next Friday",
+    "content": "Blabla34rgfdhfgdnd",
+    "timestamp": "23.07.2025",
+    "likes": 23,
+    "comments": [
+      {
+        "commentId": "123456"
+      }
+    ]
+  },
+  {
+    "_id": "3656546",
+    "communityId": "123",
+    "userId": "1234",
+    "title": "Where can I buy dried mullberies in Berlin?",
+    "content": "Blabegeiruhgpierugviuebla",
+    "timestamp": "23.07.2025",
+    "likes": 203,
+    "comments": [
+      {
+        "commentId": "123456"
+      }
+    ]
+  },
+  {
+    "_id": "3656546",
+    "communityId": "123",
+    "userId": "1234",
+    "title": "Where can I apply for Turkish visa?",
+    "content": "Blabegeiruhgpierugviuebla",
+    "timestamp": "23.07.2025",
+    "likes": 5,
+    "comments": [
+      {
+        "commentId": "123456"
+      }
+    ]
+  }
+]
