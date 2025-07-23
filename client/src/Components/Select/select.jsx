@@ -10,7 +10,7 @@ export default function Select({ }) {
           <select name="" id="">
             {
               communities.map(comm => {
-                return <option value={comm.city}>{comm.city}</option>
+                return <option key={comm._id} value={comm.city}>{comm.city}</option>
               })
             }
           </select>
@@ -20,7 +20,7 @@ export default function Select({ }) {
           <select name="" id="">
             {
               topics.map(topic => {
-                return <option value={topic.name}>{topic.name}</option>
+                return <option key={topic.name} value={topic.name}>{topic.name}</option>
               })
             }
           </select>

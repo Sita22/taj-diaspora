@@ -1,25 +1,18 @@
 import { useState } from 'react'
 import './App.css'
 import user from './mock/user.json'
-import Select from './Components/Select/select'
-import PostList from './Components/PostList/postList'
 import { Routes, Route } from 'react-router'
+import Home from './Components/Home/home.jsx'
+import Post from './Components/Post/post.jsx'
 
 
 function App() {
 
   return (
     <>
-      <nav>
-        <img src="logo.png" alt="" width={100} />
-      </nav>
-      <div className='dropdowns'>
-        <Select />
-      </div>
-      <div className='postlist'>
-        <PostList />
-      </div>
       <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/posts/:postId" element={<Post />} />
       </Routes>
     </>
   )
