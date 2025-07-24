@@ -2,11 +2,17 @@ import Select from '../Select/select'
 import PostList from '../PostList/postList'
 import './home.css'
 
-export default function Home({ posts, topics, user }) {
+export default function Home({ postsByTopic, topics, user, setPostsByTopic, posts }) {
 
 
   //TODO display search bar 
   //TODO display user icon with link to User details
+  //TODO display the list of highlighted posts or recent posts
+
+  function handleAddPost () {
+
+  }
+
 
   return (
     <>
@@ -16,6 +22,7 @@ export default function Home({ posts, topics, user }) {
         </div>
         <div className='right-nav'>
           <p>Search    </p>
+          <button onClick={handleAddPost}>Add Post</button>
           <p> {user.name}</p>
         </div>
       </nav>
@@ -23,14 +30,14 @@ export default function Home({ posts, topics, user }) {
       <div className='dropdowns'>
         <div>
           <p>Your local community</p>
-          <div>
-            <p>{user.community}</p>
+          <div className='local-community'>
+            <p>{user.city}, {user.country}</p>
           </div>
         </div>
-        <Select topics={topics} />
+        <Select topics={topics} setPostsByTopic={setPostsByTopic} postsByTopic={postsByTopic} posts={posts} />
       </div>
       <div className='postlist'>
-        <PostList posts={posts} />
+        <PostList postsByTopic={postsByTopic} />
       </div>
     </>
   )

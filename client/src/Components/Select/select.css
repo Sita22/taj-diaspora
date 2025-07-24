@@ -1,3 +1,10 @@
 .dropdowns {
   display: flex;
 }
+
+.topics-container select {
+  width: 160px;
+  height: 35px;
+  background-color: rgb(249, 249, 249);
+  border: 1px solid rgb(233, 164, 37);
+}

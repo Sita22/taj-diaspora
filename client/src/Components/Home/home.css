@@ -9,3 +9,14 @@ nav {
   width: 150px;
   justify-content: space-between;
 }
+
+.local-community {
+  border: 1px solid rgb(233, 164, 37);
+  border-radius: 5px;
+  width: 160px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+}

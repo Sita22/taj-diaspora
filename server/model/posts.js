@@ -22,6 +22,7 @@ const addPost = async (postData, topicTitle) => {
       ...postData
     }
     const addedPost = await Post.insertOne(newPost);
+    const updateTopic = await Topic.findOneAndUpdate({ title: topicTitle }, { $push: { posts: addedPost._id } })
     return addedPost;
   } catch (err) {
     console.log(err);
