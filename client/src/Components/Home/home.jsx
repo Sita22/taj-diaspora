@@ -3,8 +3,6 @@ import PostList from '../PostList/postList'
 import './home.css'
 
 export default function Home({ postsByTopic, topics, user, setPostsByTopic, posts }) {
-  //TODO display the list of highlighted posts or recent post
-
 
   return (
     <>

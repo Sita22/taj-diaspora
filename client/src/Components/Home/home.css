@@ -1,5 +1,12 @@
+.dropdowns {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
 .local-community {
-  border: 1px solid rgb(233, 164, 37);
+  border: 1px solid #f08c00;
+  background-color: #ffaa22;
   border-radius: 5px;
   width: 160px;
   height: 35px;

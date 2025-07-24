@@ -35,7 +35,9 @@ function App() {
   return (
     <>
       <AppContext.Provider value={{ user, users }}>
-        <Nav user={user} />
+        <div className='nav-container'>
+          <Nav user={user} />
+        </div>
         <Routes>
           <Route path="/" element={<Home postsByTopic={postsByTopic} topics={topics} user={user} setPostsByTopic={setPostsByTopic} posts={posts} />} />
           <Route path="/posts/:postId" element={<Post />} />

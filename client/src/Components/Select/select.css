@@ -5,6 +5,7 @@
 .topics-container select {
   width: 160px;
   height: 35px;
-  background-color: rgb(249, 249, 249);
-  border: 1px solid rgb(233, 164, 37);
+  background-color: #ffaa22;
+  border: 1px solid #f08c00;
+  border-radius: 5px;
 }

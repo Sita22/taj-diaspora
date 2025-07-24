@@ -15,9 +15,9 @@ export default function Nav({ user }) {
   return (
     <>
       <nav>
-        <div>
+        <div className='left-nav'>
           <Link to={"/"}>
-            <img src="/logo.png" alt="" width={100} />
+            <img src="/logoNew.png" alt="" width={150} />
           </Link>
         </div>
         <div className='right-nav'>
