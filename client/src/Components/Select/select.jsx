@@ -1,11 +1,15 @@
 import communities from '../../mock/communities.json'
-import topics from '../../mock/topics.json'
+import './select.css'
 
-export default function Select({ }) {
+export default function Select({ topics }) {
+
+  //TODO when select specific Topic, display list of the posts belonging to this topic
+  //TODO display community of the user
+
   return (
     <>
       <div className='dropdowns'>
-        <form action="">
+        {/* <form action="">
           <label htmlFor=""></label>
           <select name="" id="">
             {
@@ -14,13 +18,13 @@ export default function Select({ }) {
               })
             }
           </select>
-        </form>
+        </form> */}
         <form action="">
           <label htmlFor=""></label>
           <select name="" id="">
             {
               topics.map(topic => {
-                return <option key={topic.name} value={topic.name}>{topic.name}</option>
+                return <option key={topic.title} value={topic.title}>{topic.title}</option>
               })
             }
           </select>

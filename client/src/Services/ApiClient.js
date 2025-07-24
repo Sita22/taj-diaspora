@@ -1,7 +1,29 @@
-const baseUrl = "http://localhost:3000/events";
+const baseUrl = "http://localhost:3000/";
+const userId = "688209f02da523f3cedfa50e";
+
+export const getUser = async () => {
+  const response = await fetch(`${baseUrl}user/${userId}`);
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  } else {
+    console.log("Did not work to fetch data");
+  }
+}
+
+export const getAllTopics = async () => {
+  const response = await fetch(`${baseUrl}topics`);
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  } else {
+    console.log("Did not work to fetch data");
+  }
+}
+
 
 export const getAllPosts = async () => {
-  const response = await fetch(baseUrl);
+  const response = await fetch(`${baseUrl}Events/posts`);
   if (response.ok) {
     const data = await response.json();
     return data;
@@ -10,15 +32,15 @@ export const getAllPosts = async () => {
   }
 }
 
-export const getComments = async () => {
-  const response = await fetch(baseUrl);
-  if (response.ok) {
-    const data = await response.json();
-    return data;
-  } else {
-    console.log("Did not work to fetch data");
-  }
-}
+// export const getComments = async () => {
+//   const response = await fetch(baseUrl);
+//   if (response.ok) {
+//     const data = await response.json();
+//     return data;
+//   } else {
+//     console.log("Did not work to fetch data");
+//   }
+// }
 
 // export const postEvent = async (title, date, venue) => {
 //   const response = await fetch(baseUrl, {

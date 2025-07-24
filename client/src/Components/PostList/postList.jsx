@@ -1,8 +1,9 @@
-import posts from '../../mock/posts.json'
+//import posts from '../../mock/posts.json'
 import './postList.css'
 import { Link } from 'react-router';
 
-export default function PostList({ }) {
+export default function PostList({ posts }) {
+
   return (
     <>
       {
@@ -10,7 +11,7 @@ export default function PostList({ }) {
           return (
             <div key={post._id} className='post-teaser'>
               <Link to={`/posts/${post._id}`}>
-              <h4>{post.title}</h4>
+                <h4>{post.title}</h4>
               </Link>
               <div className='post-details'>
                 <p>{post.likes} likes</p>

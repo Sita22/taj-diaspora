@@ -1,17 +1,36 @@
 import Select from '../Select/select'
 import PostList from '../PostList/postList'
+import './home.css'
 
-export default function Home ({}) {
+export default function Home({ posts, topics, user }) {
+
+
+  //TODO display search bar 
+  //TODO display user icon with link to User details
+
   return (
     <>
-    <nav>
-        <img src="logo.png" alt="" width={100} />
+      <nav>
+        <div>
+          <img src="logo.png" alt="" width={100} />
+        </div>
+        <div className='right-nav'>
+          <p>Search    </p>
+          <p> {user.name}</p>
+        </div>
       </nav>
+
       <div className='dropdowns'>
-        <Select />
+        <div>
+          <p>Your local community</p>
+          <div>
+            <p>{user.community}</p>
+          </div>
+        </div>
+        <Select topics={topics} />
       </div>
       <div className='postlist'>
-        <PostList />
+        <PostList posts={posts} />
       </div>
     </>
   )

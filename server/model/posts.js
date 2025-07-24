@@ -1,7 +1,8 @@
 const mongoose = require('./index');
+const Topic = require('./topics')
 
 const postSchema = new mongoose.Schema({
-  communityId: { type: mongoose.Schema.Types.ObjectId, ref: 'Community', required: true },
+  topicId: { type: mongoose.Schema.Types.ObjectId, ref: 'Topic', required: true },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   title: { type: String, required: true },
   content: { type: String, required: false },
@@ -12,4 +13,19 @@ const postSchema = new mongoose.Schema({
 
 const Post = mongoose.model('Post', postSchema);
 
-module.exports = Post;
+
+const addPost = async (postData, topicTitle) => {
+  try {
+    const topic = await Topic.findOne({ title: topicTitle });
+    const newPost = {
+      "topicId": topic._id,
+      ...postData
+    }
+    const addedPost = await Post.insertOne(newPost);
+    return addedPost;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+module.exports = { Post, addPost };
