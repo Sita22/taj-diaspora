@@ -1,0 +1,17 @@
+.profile-container img {
+  border-radius: 50%;
+  height: 120px;
+  object-fit: cover;
+  border: 5px solid rgb(188, 188, 188);
+}
+
+.img-block {
+  position: relative;
+}
+
+.camera-icon {
+  position: absolute;
+  top: 105px;
+  left: 100px;
+}
+

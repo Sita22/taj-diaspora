@@ -1,16 +1,48 @@
+import { useState, useEffect } from "react";
 import { useParams } from "react-router"
 
 export default function Post() {
   let params = useParams();
+  const baseUrl = "http://localhost:3000/";
+  const [post, setPost] = useState({});
 
   //TODO add details about the post
-  //TODO display comments
+  //TODO display comments by comment details 
   //TODO if no comments, ??
 
+  useEffect(() => {
+    if (params !== undefined) {
+      async function fetchPost() {
+        try {
+          const data = await fetch(`${baseUrl}posts/${params.postId}`);
+          if (!data.ok) {
+            throw new Error(`Response status: ${data.status}`);
+          }
+          const json = await data.json();
+          setPost(json);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      fetchPost();
+    }
+  }, [])
 
   return (
     <>
-      <p>Hello</p>
+      <h1>{post.title}</h1>
+      <p>{post.content}</p>
+      {
+        post.comments && post.comments.length > 0
+          ? post.comments.map(comment => {
+            return (
+              <div key={comment}>
+                <p>{comment}</p>
+              </div>
+            )
+          })
+          : <p>No comments yet</p>
+      }
     </>
   )
 }

@@ -4,8 +4,6 @@ import './select.css'
 
 export default function Select({ topics, setPostsByTopic, posts }) {
 
-  //TODO display community of the user
-
   const [selectedTopic, setSelectedTopic] = useState("All");
 
   function handleChange(event) {

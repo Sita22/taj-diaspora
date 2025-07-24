@@ -11,6 +11,17 @@ export const getUser = async () => {
   }
 }
 
+
+export const getAllUsers = async () => {
+  const response = await fetch(`${baseUrl}user`);
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  } else {
+    console.log("Did not work to fetch data");
+  }
+}
+
 export const getAllTopics = async () => {
   const response = await fetch(`${baseUrl}topics`);
   if (response.ok) {

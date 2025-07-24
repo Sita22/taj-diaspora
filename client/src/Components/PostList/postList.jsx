@@ -1,8 +1,12 @@
 //import posts from '../../mock/posts.json'
 import './postList.css'
 import { Link } from 'react-router';
+import { useContext } from 'react';
+import { AppContext } from '../../App';
 
 export default function PostList({ postsByTopic }) {
+  const { user, users } = useContext(AppContext);
+  //TODO display the use
 
   return (
     <>

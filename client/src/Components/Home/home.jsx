@@ -3,30 +3,11 @@ import PostList from '../PostList/postList'
 import './home.css'
 
 export default function Home({ postsByTopic, topics, user, setPostsByTopic, posts }) {
-
-
-  //TODO display search bar 
-  //TODO display user icon with link to User details
-  //TODO display the list of highlighted posts or recent posts
-
-  function handleAddPost () {
-
-  }
+  //TODO display the list of highlighted posts or recent post
 
 
   return (
     <>
-      <nav>
-        <div>
-          <img src="logo.png" alt="" width={100} />
-        </div>
-        <div className='right-nav'>
-          <p>Search    </p>
-          <button onClick={handleAddPost}>Add Post</button>
-          <p> {user.name}</p>
-        </div>
-      </nav>
-
       <div className='dropdowns'>
         <div>
           <p>Your local community</p>

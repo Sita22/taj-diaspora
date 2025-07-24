@@ -1,17 +1,20 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, createContext } from 'react'
 import './App.css'
-import user from './mock/user.json'
 import { Routes, Route } from 'react-router'
 import Home from './Components/Home/home.jsx'
 import Post from './Components/Post/post.jsx'
-import { getAllPosts, getAllTopics, getCommunities, getUser } from './Services/ApiClient.js'
+import { getAllPosts, getAllTopics, getAllUsers, getCommunities, getUser } from './Services/ApiClient.js'
+import Nav from './Components/Navigation/nav.jsx'
+import UserDetails from './Components/UserDetails/userDetails.jsx'
 
+export const AppContext = createContext(null);
 
 function App() {
   const [posts, setPosts] = useState([]);
   const [postsByTopic, setPostsByTopic] = useState([]);
   const [topics, setTopics] = useState([]);
   const [user, setUser] = useState({});
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -19,20 +22,26 @@ function App() {
       const topicList = await getAllTopics();
       const userData = await getUser();
       const communityData = await getCommunities();
+      const usersData = await getAllUsers();
       setPosts(postList);
       setPostsByTopic(postList);
       setTopics(topicList);
       setUser(userData);
+      setUsers(usersData);
     }
     fetchData();
   }, []);
 
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Home postsByTopic={postsByTopic} topics={topics} user={user} setPostsByTopic={setPostsByTopic} posts={posts} />} />
-        <Route path="/posts/:postId" element={<Post />} />
-      </Routes>
+      <AppContext.Provider value={{ user, users }}>
+        <Nav user={user} />
+        <Routes>
+          <Route path="/" element={<Home postsByTopic={postsByTopic} topics={topics} user={user} setPostsByTopic={setPostsByTopic} posts={posts} />} />
+          <Route path="/posts/:postId" element={<Post />} />
+          <Route path="/user" element={<UserDetails user={user} />} />
+        </Routes>
+      </AppContext.Provider>
     </>
   )
 }
