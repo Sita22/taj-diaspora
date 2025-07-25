@@ -6,7 +6,6 @@ export default function Post() {
   const baseUrl = "http://localhost:3000/";
   const [post, setPost] = useState({});
 
-  //TODO add details about the post
   //TODO display comments by comment details 
   //TODO if no comments, ??
 
@@ -31,13 +30,16 @@ export default function Post() {
   return (
     <>
       <h1>{post.title}</h1>
+      <h2>{post.author?.username}</h2>
       <p>{post.content}</p>
       {
         post.comments && post.comments.length > 0
           ? post.comments.map(comment => {
             return (
-              <div key={comment}>
-                <p>{comment}</p>
+              <div key={comment._id}>
+                <h3>Comments</h3>
+                <p>{comment.content}</p>
+                <p>{comment.author.username}</p>
               </div>
             )
           })

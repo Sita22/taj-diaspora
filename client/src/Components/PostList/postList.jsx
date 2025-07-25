@@ -24,10 +24,12 @@ export default function PostList({ postsByTopic }) {
             .map(post => {
               return (
                 <div key={post._id} className='post-teaser'>
-                  <Link to={`/posts/${post._id}`}>
-                    <h4>{post.title}</h4>
-                  </Link>
-                  <p>{post.userId.username}</p>
+                  <div className='title-author'>
+                    <Link to={`/posts/${post._id}`}>
+                      <h4>{post.title}</h4>
+                    </Link>
+                    <p>{post.author.username}</p>
+                  </div>
                   <div className='post-details'>
                     <p> <FontAwesomeIcon icon={faHeart} color="#cb2a2a" />{post.likes}</p>
                     <p> <FontAwesomeIcon icon={faComment} color="#3d4050" />{post.comments.length}</p>

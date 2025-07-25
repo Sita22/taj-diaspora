@@ -1,5 +1,5 @@
 const baseUrl = "http://localhost:3000/";
-const userId = "688209f02da523f3cedfa50e";
+const userId = "688347b0fc79648aed659172";
 
 export const getUser = async () => {
   const response = await fetch(`${baseUrl}user/${userId}`);

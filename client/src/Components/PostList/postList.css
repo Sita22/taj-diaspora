@@ -26,3 +26,8 @@
   text-decoration: none;
   color: black;
 }
+
+.title-author {
+  display: flex;
+  justify-content: space-between;
+}

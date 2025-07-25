@@ -23,16 +23,6 @@ export default function Select({ topics, setPostsByTopic, posts }) {
   return (
     <>
       <div className='dropdowns'>
-        {/* <form action="">
-          <label htmlFor=""></label>
-          <select name="" id="">
-            {
-              communities.map(comm => {
-                return <option key={comm._id} value={comm.city}>{comm.city}</option>
-              })
-            }
-          </select>
-        </form> */}
         <div className='topics-container'>
           <label htmlFor="">Topics
             <select value={selectedTopic} onChange={handleChange}>

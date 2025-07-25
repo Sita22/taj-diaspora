@@ -1,5 +1,21 @@
 const router = require('express').Router();
-const { getUsers, getUser, createUser, getCommunity, getCommunities, createCommunity, getPosts, getPostById, getPostsByTopic, createPost, getComments, createComment, getTopics, createTopic} = require('./controllers/controllers');
+const {
+  getUsers,
+  getUser,
+  createUser,
+  getCommunity,
+  getCommunities,
+  createCommunity,
+  getPosts,
+  getPostById,
+  getPostsByTopic,
+  createPost,
+  getComments,
+  getCommentById,
+  createComment,
+  getTopics,
+  createTopic
+} = require('./controllers/controllers');
 
 //User
 router.get('/user', getUsers);
@@ -19,6 +35,7 @@ router.post('/:topic/posts', createPost);
 
 //Comment
 router.get('/comments', getComments);
+router.get('/comments/:commentId', getCommentById);
 router.post('/comments', createComment);
 
 //Topics

@@ -104,7 +104,7 @@ exports.createCommunity = async (req, res) => {
 //POSTS
 exports.getPosts = async (req, res) => {
   try {
-    const result = await Post.find().populate("userId").exec();
+    const result = await Post.find().populate("author").populate("comments").exec();
     res.send(result);
     res.status(200);
   } catch (err) {
@@ -117,7 +117,10 @@ exports.getPosts = async (req, res) => {
 exports.getPostById = async (req, res) => {
   try {
     const id = req.params["postId"];
-    const result = await Post.findOne({ _id: id });
+    const result = await Post.findOne({ _id: id }).populate("author").populate({
+      path: "comments",
+      populate: { path: "author"}
+    }).exec();
     res.send(result);
     res.status(200);
   } catch (err) {
@@ -147,8 +150,8 @@ exports.getPostsByTopic = async (req, res) => {
 exports.createPost = async (req, res) => {
   try {
     const topicTitle = req.params["topic"];
-    const { userId, title } = req.body;
-    if (!topicTitle || !userId || !title) {
+    const { author, title } = req.body;
+    if (!topicTitle || !author || !title) {
       res.send("Data is missing: either topic or UserId or title");
       res.status(400);
     }
@@ -166,7 +169,20 @@ exports.createPost = async (req, res) => {
 //COMMENTS
 exports.getComments = async (req, res) => {
   try {
-    const result = await Comment.find({});
+    const result = await Comment.find({}).populate("author").exec();
+    res.send(result);
+    res.status(200);
+  } catch (err) {
+    res.status(404);
+    console.log(err);
+    res.send(err);
+  }
+}
+
+exports.getCommentById = async (req, res) => {
+  try {
+    const commentId = req.params["commentId"];
+    const result = await Comment.find({ _id: commentId }).populate("author").exec();
     res.send(result);
     res.status(200);
   } catch (err) {
@@ -179,8 +195,8 @@ exports.getComments = async (req, res) => {
 
 exports.createComment = async (req, res) => {
   try {
-    const { postId, userId, content } = req.body;
-    if (!postId || !userId || !content) {
+    const { postId, author, content } = req.body;
+    if (!postId || !author || !content) {
       res.send("Data is missing: either postId or UserId or content");
       res.status(400);
     }
