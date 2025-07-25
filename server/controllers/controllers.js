@@ -42,7 +42,10 @@ exports.createUser = async (req, res) => {
       res.send("Data is missing: either email, username, city or country");
       res.status(400);
     }
-    const community = await Community.findOne({ city: city });
+    let community = await Community.findOne({ city: city });
+    if (!community) {
+      community = await Community.insertOne(city, country);
+    }
     const newUser = {
       ...req.body,
       community: community._id
@@ -58,6 +61,36 @@ exports.createUser = async (req, res) => {
     res.send(err);
   }
 }
+
+
+exports.updateUser = async (req, res) => {
+  try {
+    const { userId, city, country } = req.body;
+    if (!userId) {
+      res.status(400).send("Data is missing: userId");
+    }
+    const user = await User.findOne({ _id: userId });
+    if (city) user.city = city;
+    if (country) user.country = country;
+    let community = await Community.findOne({ city: city });
+    if (community === null) {
+      community = await Community.create({ city, country });
+    }
+    if (!user.community.includes(community._id)) {
+      user.community.push(community._id);
+    }
+    user.save();
+    //! should I return here updated community? Then I need to add {new: true}
+    const updateCommunity = await Community.findOneAndUpdate({ city: city }, { $addToSet: { members: user._id } })
+    res.status(201).send(user);
+  } catch (err) {
+    res.status(404).send(err);
+    console.log(err);
+  }
+}
+
+
+
 
 //COMMUNITY
 exports.getCommunity = async (req, res) => {

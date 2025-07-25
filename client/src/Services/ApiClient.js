@@ -89,6 +89,23 @@ export const addComment = async (content, postId, author) => {
   }
 }
 
+export const updateUser = async (userId, city, country) => {
+  const response = await fetch(`${baseUrl}user/update`, {
+    method: "POST",
+    body: JSON.stringify({userId, city, country}),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  } else {
+    console.log("Did not work to post data");
+  }
+}
+
 // export const findCommunityByUserId = async () => {
 //   const response = await fetch(`${baseUrl}community/${userId}`);
 //   if (response.ok) {

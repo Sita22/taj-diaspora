@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router"
 import { addComment } from "../../Services/ApiClient";
+import './post.css'
 
 export default function Post({ user }) {
   let params = useParams();
@@ -13,6 +14,7 @@ export default function Post({ user }) {
     setContent(newContent);
   }
 
+  //TODO display status after submitting form
   async function handleOnSubmit(event) {
     event.preventDefault();
     const newComment = await addComment(content, post._id, user._id);
@@ -64,9 +66,8 @@ export default function Post({ user }) {
           : <p>No comments yet</p>
       }
       <div className="add-comment-container">
-        <h1>Add a new comment</h1>
+        <h4>Add a new comment</h4>
         <form className="comment-form" action="" onSubmit={handleOnSubmit}>
-          <label htmlFor="">Content</label>
           <textarea value={content} onChange={handleContent} rows={7} placeholder="Insert a content..." />
           <button type="submit">Create</button>
         </form>

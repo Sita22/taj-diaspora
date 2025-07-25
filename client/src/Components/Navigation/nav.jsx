@@ -5,8 +5,7 @@ import { faSearch, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 export default function Nav() {
   //TODO display search bar 
-  //TODO display user icon with link to User details
-
+  
   function handleAddPost() {
 
   }
@@ -21,7 +20,7 @@ export default function Nav() {
         <div className='right-nav'>
           <FontAwesomeIcon icon={faSearch} size="lg" />
           <Link to={"/posts/add"}>
-            <FontAwesomeIcon icon={faPlus} onClick={handleAddPost} size="lg" />
+            <FontAwesomeIcon icon={faPlus} onClick={handleAddPost} size="lg" color="#000" />
           </Link>
           <Link to={"/user"}>
             <img src="/avatar.jpg" alt="" width={50} />

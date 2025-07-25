@@ -56,7 +56,7 @@ function App() {
             <Route path="/" element={<Home setPosts={setPosts} topics={topics} user={user} posts={posts} />} />
           )}
           <Route path="/posts/:postId" element={<Post user={user} />} />
-          <Route path="/user" element={<UserDetails user={user} />} />
+          <Route path="/user" element={<UserDetails user={user} setUser={setUser} />} />
           <Route path="/posts/add" element={<AddPost setPosts={setPosts} topics={topics} user={user} />} />
         </Routes>
       </AppContext.Provider>

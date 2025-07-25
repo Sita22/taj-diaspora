@@ -3,6 +3,7 @@ const {
   getUsers,
   getUser,
   createUser,
+  updateUser,
   getCommunity,
   getCommunities,
   createCommunity,
@@ -21,6 +22,7 @@ const {
 router.get('/user', getUsers);
 router.get('/user/:userId', getUser);
 router.post('/user', createUser);
+router.post('/user/update', updateUser);
 
 //Community
 router.get('/community', getCommunities);
