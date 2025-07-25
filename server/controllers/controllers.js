@@ -104,7 +104,7 @@ exports.createCommunity = async (req, res) => {
 //POSTS
 exports.getPosts = async (req, res) => {
   try {
-    const result = await Post.find();
+    const result = await Post.find().populate("userId").exec();
     res.send(result);
     res.status(200);
   } catch (err) {

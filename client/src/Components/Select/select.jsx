@@ -6,6 +6,8 @@ export default function Select({ topics, setPostsByTopic, posts }) {
 
   const [selectedTopic, setSelectedTopic] = useState("All");
 
+  //TODO populate() in controller topics with posts instead of filtering
+
   function handleChange(event) {
     const value = event.target.value;
     setSelectedTopic(value);
