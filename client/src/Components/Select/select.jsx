@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import communities from '../../mock/communities.json'
 import { getAllPosts } from '../../Services/ApiClient';
 import './select.css'
 

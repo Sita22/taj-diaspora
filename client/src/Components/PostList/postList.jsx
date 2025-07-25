@@ -1,18 +1,11 @@
 import './postList.css'
 import { Link } from 'react-router';
-import { useContext } from 'react';
-import { AppContext } from '../../App';
-import { useState, useEffect } from 'react';
-import { format, formatDistanceToNow } from 'date-fns';
+import { formatDistanceToNow } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faHeart } from '@fortawesome/free-solid-svg-icons'
 
-export default function PostList({ posts }) {
-  const { user, users } = useContext(AppContext);
+export default function PostList({ posts, setPosts }) {
   const baseUrl = "http://localhost:3000/";
-
-  const [liked, setLikedStatus] = useState(false);
-  const [heartColor, setHeartColor] = useState("#3d4050");
 
   async function updateLikeStatus(action, postId) {
     try {
@@ -29,19 +22,16 @@ export default function PostList({ posts }) {
     }
   }
 
-  async function handleLike(postId) {
+  async function handleLike(post) {
     let action = "";
-    if (!liked) {
+    if (!post.liked) {
       action = "increment";
-      setHeartColor("#cb2a2a");
-      setLikedStatus(!liked);
-      const updatedPost = await updateLikeStatus(action, postId);
-      
+      const updatedPost = await updateLikeStatus(action, post._id);
+      setPosts((prevList) => ({ ...prevList, [updatedPost._id]: {...updatedPost, liked: true} }));
     } else {
       action = "decrement";
-      setHeartColor("#3d4050");
-      setLikedStatus(!liked);
-      updateLikeStatus(action, postId);
+      const updatedPost = await updateLikeStatus(action, post._id);
+      setPosts((prevList) => ({ ...prevList, [updatedPost._id]: {...updatedPost, liked: false} }));
     }
   }
 
@@ -59,10 +49,10 @@ export default function PostList({ posts }) {
                     <Link to={`/posts/${post._id}`}>
                       <h4>{post.title}</h4>
                     </Link>
-                    <p>{post.author.username}</p>
+                    <p>{post.author?.username}</p>
                   </div>
                   <div className='post-details'>
-                    <p> <FontAwesomeIcon icon={faHeart} color={heartColor} onClick={() => handleLike(post._id)} />{post.likes}</p>
+                    <p> <FontAwesomeIcon icon={faHeart} color={post.liked ? "#cb2a2a" : "#3d4050"} onClick={() => handleLike(post)} />{post.likes}</p>
                     <p> <FontAwesomeIcon icon={faComment} color="#3d4050" />{post.comments.length}</p>
                     <p>{formatDistanceToNow(new Date(post.timestamp))} ago</p>
                   </div>
