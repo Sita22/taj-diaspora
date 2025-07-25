@@ -46,6 +46,7 @@ exports.createUser = async (req, res) => {
     const newUser = {
       ...req.body,
       community: community._id
+
     }
     const user = await User.insertOne(newUser);
     //! should I return here updated community? Then I need to add {new: true}
@@ -215,7 +216,7 @@ exports.createComment = async (req, res) => {
 //TOPIC
 exports.getTopics = async (req, res) => {
   try {
-    const result = await Topic.find({});
+    const result = await Topic.find().populate("posts").exec();
     res.send(result);
     res.status(200);
   } catch (err) {

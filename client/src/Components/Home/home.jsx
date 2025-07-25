@@ -2,7 +2,7 @@ import Select from '../Select/select'
 import PostList from '../PostList/postList'
 import './home.css'
 
-export default function Home({ postsByTopic, topics, user, setPostsByTopic, posts }) {
+export default function Home({ topics, user, posts, setPosts }) {
 
   return (
     <>
@@ -13,10 +13,10 @@ export default function Home({ postsByTopic, topics, user, setPostsByTopic, post
             <p>{user.city}, {user.country}</p>
           </div>
         </div>
-        <Select topics={topics} setPostsByTopic={setPostsByTopic} postsByTopic={postsByTopic} posts={posts} />
+        <Select topics={topics} setPosts={setPosts} />
       </div>
       <div className='postlist'>
-        <PostList postsByTopic={postsByTopic} />
+        <PostList posts={posts} />
       </div>
     </>
   )

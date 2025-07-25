@@ -11,7 +11,6 @@ export const AppContext = createContext(null);
 
 function App() {
   const [posts, setPosts] = useState([]);
-  const [postsByTopic, setPostsByTopic] = useState([]);
   const [topics, setTopics] = useState([]);
   const [user, setUser] = useState({});
   const [users, setUsers] = useState([]);
@@ -24,7 +23,6 @@ function App() {
       const communityData = await getCommunities();
       const usersData = await getAllUsers();
       setPosts(postList);
-      setPostsByTopic(postList);
       setTopics(topicList);
       setUser(userData);
       setUsers(usersData);
@@ -39,7 +37,7 @@ function App() {
           <Nav user={user} />
         </div>
         <Routes>
-          <Route path="/" element={<Home postsByTopic={postsByTopic} topics={topics} user={user} setPostsByTopic={setPostsByTopic} posts={posts} />} />
+          <Route path="/" element={<Home setPosts={setPosts} topics={topics} user={user} posts={posts} />} />
           <Route path="/posts/:postId" element={<Post />} />
           <Route path="/user" element={<UserDetails user={user} />} />
         </Routes>

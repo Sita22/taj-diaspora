@@ -1,22 +1,23 @@
 import { useState } from 'react';
 import communities from '../../mock/communities.json'
+import { getAllPosts } from '../../Services/ApiClient';
 import './select.css'
 
-export default function Select({ topics, setPostsByTopic, posts }) {
-
+export default function Select({ topics, setPosts }) {
   const [selectedTopic, setSelectedTopic] = useState("All");
-
-  //TODO populate() in controller topics with posts instead of filtering
 
   function handleChange(event) {
     const value = event.target.value;
     setSelectedTopic(value);
     if (value === "all") {
-      setPostsByTopic(posts);
+      async function fetchData() {
+        const postList = await getAllPosts();
+        setPosts(postList);
+      }
+      fetchData();
     } else if (value !== "All") {
       const selectedTopicData = topics.filter(topic => topic.title === value);
-      const filteredPosts = posts.filter(post => post.topicId === selectedTopicData[0]._id)
-      setPostsByTopic(filteredPosts);
+      setPosts(selectedTopicData[0].posts);
     }
   }
 

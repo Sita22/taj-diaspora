@@ -7,20 +7,16 @@ import { format, formatDistanceToNow } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faHeart } from '@fortawesome/free-solid-svg-icons'
 
-export default function PostList({ postsByTopic }) {
+export default function PostList({ posts }) {
   const { user, users } = useContext(AppContext);
-  const [postWithAuthor, setPostWithAuthor] = useState([]);
-  //TODO display the author
-
-
 
   return (
     <>
       {
-        postsByTopic.length === 0 ?
+        posts.length === 0 ?
           <p>Not posts yet</p>
           :
-          postsByTopic.slice().sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+          posts.slice().sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
             .map(post => {
               return (
                 <div key={post._id} className='post-teaser'>
