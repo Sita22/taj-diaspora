@@ -5,7 +5,7 @@ import { faSearch, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 export default function Nav() {
   //TODO display search bar 
-  
+
   function handleAddPost() {
 
   }
@@ -14,7 +14,7 @@ export default function Nav() {
       <nav>
         <div className='left-nav'>
           <Link to={"/"}>
-            <img src="/logoNew.png" alt="" width={150} />
+            <img src="/taj-diaspora-logo.jpeg" alt="" width={150} />
           </Link>
         </div>
         <div className='right-nav'>

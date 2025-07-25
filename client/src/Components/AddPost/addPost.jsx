@@ -7,6 +7,7 @@ export default function AddPost({ setPosts, topics, user }) {
   const [title, setTitle] = useState("");
   const [selectedTopic, setSelectedTopic] = useState("");
   const [content, setContent] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     if (topics.length > 0) {
@@ -37,11 +38,14 @@ export default function AddPost({ setPosts, topics, user }) {
     setSelectedTopic("");
     setTitle("");
     setContent("");
-    return <p>Post successfully created!</p>
+    setSuccessMessage("Your post have been successfully created!")
   }
   return (
     <>
       <div className="add-post-container">
+        {
+          successMessage && <p>{successMessage}</p>
+        }
         <h1>Add a new post</h1>
         <form className="post-form" action="" onSubmit={handleOnSubmit}>
           <label htmlFor="">Select a topic</label>

@@ -17,21 +17,21 @@ nav {
   width: 35px;
   height: 35px;
   object-fit: cover;
+  border: 2px solid rgb(188, 188, 188);
 }
 
-
 .left-nav {
-  width: 130px;           /* desired crop width */
-  height: 80px;          /* desired crop height */
+  width: 130px;
+  height: 80px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.left-nav img {
-  width: 150px;          /* can be larger than container for cropping effect */
+/*.left-nav img {
+  width: 150px;    
   height: 150px;
   object-fit: cover;
   display: block;
-}
+} */
