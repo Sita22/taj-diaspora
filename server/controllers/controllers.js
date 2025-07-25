@@ -135,13 +135,12 @@ exports.getPostById = async (req, res) => {
 exports.updatePostLike = async (req, res) => {
   try {
     const id = req.params["postId"];
-    console.log(req.path)
     if (req.path.includes("increment")) {
-      const result = await Post.findOneAndUpdate({ _id: id }, { $inc: { likes: 1 } }, { new: true });
+      const result = await Post.findOneAndUpdate({ _id: id }, { $inc: { likes: 1 } }, { new: true }).populate("author").exec();
       res.send(result);
       res.status(200);
     } else if (req.path.includes("decrement")) {
-      const result = await Post.findOneAndUpdate({ _id: id }, { $inc: { likes: -1 } }, { new: true });
+      const result = await Post.findOneAndUpdate({ _id: id }, { $inc: { likes: -1 } }, { new: true }).populate("author").exec();
       res.send(result);
       res.status(200);
     }
@@ -206,10 +205,10 @@ exports.createComment = async (req, res) => {
       res.send("Data is missing: either postId or UserId or content");
       res.status(400);
     }
-    const comment = await Comment.insertOne(req.body);
+    const comment = await Comment.create({ postId, author, content });
+    await comment.populate("author");
     const updatePost = await Post.findOneAndUpdate({ _id: postId }, { $push: { comments: comment._id } });
-    res.send(comment);
-    res.status(201);
+    res.status(201).send(comment);
   } catch (err) {
     res.status(404);
     console.log(err);

@@ -3,6 +3,7 @@ import './App.css'
 import { Routes, Route } from 'react-router'
 import Home from './Components/Home/home.jsx'
 import Post from './Components/Post/post.jsx'
+import AddPost from './Components/AddPost/addPost.jsx'
 import { getAllPosts, getAllTopics, getAllUsers, getUser } from './Services/ApiClient.js'
 import Nav from './Components/Navigation/nav.jsx'
 import UserDetails from './Components/UserDetails/userDetails.jsx'
@@ -54,8 +55,9 @@ function App() {
           ) : (
             <Route path="/" element={<Home setPosts={setPosts} topics={topics} user={user} posts={posts} />} />
           )}
-          <Route path="/posts/:postId" element={<Post />} />
+          <Route path="/posts/:postId" element={<Post user={user} />} />
           <Route path="/user" element={<UserDetails user={user} />} />
+          <Route path="/posts/add" element={<AddPost setPosts={setPosts} topics={topics} user={user} />} />
         </Routes>
       </AppContext.Provider>
     </>

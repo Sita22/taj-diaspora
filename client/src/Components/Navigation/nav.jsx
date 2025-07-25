@@ -3,9 +3,7 @@ import './nav.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faPlus } from '@fortawesome/free-solid-svg-icons'
 
-
-
-export default function Nav({ user }) {
+export default function Nav() {
   //TODO display search bar 
   //TODO display user icon with link to User details
 
@@ -22,7 +20,9 @@ export default function Nav({ user }) {
         </div>
         <div className='right-nav'>
           <FontAwesomeIcon icon={faSearch} size="lg" />
-          <FontAwesomeIcon icon={faPlus} onClick={handleAddPost} size="lg" />
+          <Link to={"/posts/add"}>
+            <FontAwesomeIcon icon={faPlus} onClick={handleAddPost} size="lg" />
+          </Link>
           <Link to={"/user"}>
             <img src="/avatar.jpg" alt="" width={50} />
           </Link>

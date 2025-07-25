@@ -1,13 +1,31 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router"
+import { addComment } from "../../Services/ApiClient";
 
-export default function Post() {
+export default function Post({ user }) {
   let params = useParams();
   const baseUrl = "http://localhost:3000/";
   const [post, setPost] = useState({});
+  const [content, setContent] = useState("");
 
-  //TODO display comments by comment details 
-  //TODO if no comments, ??
+  function handleContent(event) {
+    const newContent = event.target.value;
+    setContent(newContent);
+  }
+
+  async function handleOnSubmit(event) {
+    event.preventDefault();
+    const newComment = await addComment(content, post._id, user._id);
+    setPost(prevPost => ({
+      ...prevPost,
+      comments: [
+        ...prevPost.comments,
+        newComment
+      ]
+    }));
+    setContent("");
+    return <p>Post successfully created!</p>
+  }
 
   useEffect(() => {
     if (params !== undefined) {
@@ -45,6 +63,14 @@ export default function Post() {
           })
           : <p>No comments yet</p>
       }
+      <div className="add-comment-container">
+        <h1>Add a new comment</h1>
+        <form className="comment-form" action="" onSubmit={handleOnSubmit}>
+          <label htmlFor="">Content</label>
+          <textarea value={content} onChange={handleContent} rows={7} placeholder="Insert a content..." />
+          <button type="submit">Create</button>
+        </form>
+      </div>
     </>
   )
 }

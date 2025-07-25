@@ -49,10 +49,10 @@ export default function PostList({ posts, setPosts }) {
                     <Link to={`/posts/${post._id}`}>
                       <h4>{post.title}</h4>
                     </Link>
-                    <p>{post.author?.username}</p>
+                    <p>{post.author.username}</p>
                   </div>
                   <div className='post-details'>
-                    <p> <FontAwesomeIcon icon={faHeart} color={post.liked ? "#cb2a2a" : "#3d4050"} onClick={() => handleLike(post)} />{post.likes}</p>
+                    <p><FontAwesomeIcon icon={faHeart} color={post.liked ? "#cb2a2a" : "#3d4050"} onClick={() => handleLike(post)} />{post.likes}</p>
                     <p> <FontAwesomeIcon icon={faComment} color="#3d4050" />{post.comments.length}</p>
                     <p>{formatDistanceToNow(new Date(post.timestamp))} ago</p>
                   </div>

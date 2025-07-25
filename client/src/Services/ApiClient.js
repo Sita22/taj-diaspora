@@ -55,10 +55,27 @@ export const getAllPosts = async () => {
 }
 
 
-export const addPost = async (title, date, venue) => {
-  const response = await fetch(baseUrl, {
+export const addPost = async (title, content, topic, author) => {
+  const response = await fetch(`${baseUrl}${topic}/posts`, {
     method: "POST",
-    body: JSON.stringify({title, date, venue}),
+    body: JSON.stringify({title, content, author}),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  } else {
+    console.log("Did not work to post data");
+  }
+}
+
+export const addComment = async (content, postId, author) => {
+  const response = await fetch(`${baseUrl}comments`, {
+    method: "POST",
+    body: JSON.stringify({content, author, postId}),
     headers: {
       "Content-Type": "application/json"
     }
