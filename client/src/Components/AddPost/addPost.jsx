@@ -1,13 +1,23 @@
 import { useState, useEffect } from "react";
 import './addPost.css';
 import { addPost } from "../../Services/ApiClient";
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 export default function AddPost({ setPosts, topics, user }) {
 
   const [title, setTitle] = useState("");
   const [selectedTopic, setSelectedTopic] = useState("");
   const [content, setContent] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+  const [open, setOpen] = useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   useEffect(() => {
     if (topics.length > 0) {
@@ -38,13 +48,23 @@ export default function AddPost({ setPosts, topics, user }) {
     setSelectedTopic("");
     setTitle("");
     setContent("");
-    setSuccessMessage("Your post have been successfully created!")
+    setOpen(true);
   }
   return (
     <>
       <div className="add-post-container">
         {
-          successMessage && <p>{successMessage}</p>
+          open &&
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+            <Alert
+              onClose={handleClose}
+              severity="success"
+              variant="filled"
+              sx={{ width: '100%' }}
+            >
+              This is a success Alert inside a Snackbar!
+            </Alert>
+          </Snackbar>
         }
         <h1>Add a new post</h1>
         <form className="post-form" action="" onSubmit={handleOnSubmit}>
