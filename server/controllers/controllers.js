@@ -132,22 +132,6 @@ exports.getPostById = async (req, res) => {
 }
 
 
-
-exports.getPostsByTopic = async (req, res) => {
-  try {
-    const topicTitle = req.params["topic"];
-    const topic = await Topic.findOne({ title: topicTitle });
-    const result = await Post.find({ topicId: topic._id });
-    res.send(result);
-    res.status(200);
-  } catch (err) {
-    res.status(404);
-    console.log(err);
-    res.send(err);
-  }
-}
-
-
 exports.createPost = async (req, res) => {
   try {
     const topicTitle = req.params["topic"];

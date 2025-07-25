@@ -8,7 +8,6 @@ const {
   createCommunity,
   getPosts,
   getPostById,
-  getPostsByTopic,
   createPost,
   getComments,
   getCommentById,
@@ -30,7 +29,6 @@ router.post('/community', createCommunity);
 //Posts
 router.get('/posts', getPosts);
 router.get('/posts/:postId', getPostById);
-router.get('/:topic/posts', getPostsByTopic);
 router.post('/:topic/posts', createPost);
 
 //Comment
