@@ -13,7 +13,8 @@ const {
   getCommentById,
   createComment,
   getTopics,
-  createTopic
+  createTopic,
+  updatePostLike
 } = require('./controllers/controllers');
 
 //User
@@ -30,6 +31,8 @@ router.post('/community', createCommunity);
 router.get('/posts', getPosts);
 router.get('/posts/:postId', getPostById);
 router.post('/:topic/posts', createPost);
+router.put('/posts/:postId/increment', updatePostLike);
+router.put('/posts/:postId/decrement', updatePostLike);
 
 //Comment
 router.get('/comments', getComments);

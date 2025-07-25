@@ -10,10 +10,22 @@ import UserDetails from './Components/UserDetails/userDetails.jsx'
 export const AppContext = createContext(null);
 
 function App() {
-  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [posts, setPosts] = useState({});
   const [topics, setTopics] = useState([]);
   const [user, setUser] = useState({});
   const [users, setUsers] = useState([]);
+
+
+  const updateState = (list) => {
+    setPosts((prevPosts) => {
+      const newPosts = { ...prevPosts };
+      list.forEach((post) => {
+        newPosts[post._id] = post;
+      })
+      return newPosts;
+    })
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -22,10 +34,11 @@ function App() {
       const userData = await getUser();
       const communityData = await getCommunities();
       const usersData = await getAllUsers();
-      setPosts(postList);
+      updateState(postList);
       setTopics(topicList);
       setUser(userData);
       setUsers(usersData);
+      setLoading(false);
     }
     fetchData();
   }, []);
@@ -37,7 +50,11 @@ function App() {
           <Nav user={user} />
         </div>
         <Routes>
-          <Route path="/" element={<Home setPosts={setPosts} topics={topics} user={user} posts={posts} />} />
+          {loading ? (
+            <Route path="/" element={<div>Loading...</div>} />
+          ) : (
+            <Route path="/" element={<Home setPosts={setPosts} topics={topics} user={user} posts={posts} />} />
+          )}
           <Route path="/posts/:postId" element={<Post />} />
           <Route path="/user" element={<UserDetails user={user} />} />
         </Routes>

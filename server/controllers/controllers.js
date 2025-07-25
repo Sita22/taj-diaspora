@@ -120,10 +120,31 @@ exports.getPostById = async (req, res) => {
     const id = req.params["postId"];
     const result = await Post.findOne({ _id: id }).populate("author").populate({
       path: "comments",
-      populate: { path: "author"}
+      populate: { path: "author" }
     }).exec();
     res.send(result);
     res.status(200);
+  } catch (err) {
+    res.status(404);
+    console.log(err);
+    res.send(err);
+  }
+}
+
+
+exports.updatePostLike = async (req, res) => {
+  try {
+    const id = req.params["postId"];
+    console.log(req.path)
+    if (req.path.includes("increment")) {
+      const result = await Post.findOneAndUpdate({ _id: id }, { $inc: { likes: 1 } }, { new: true });
+      res.send(result);
+      res.status(200);
+    } else if (req.path.includes("decrement")) {
+      const result = await Post.findOneAndUpdate({ _id: id }, { $inc: { likes: -1 } }, { new: true });
+      res.send(result);
+      res.status(200);
+    }
   } catch (err) {
     res.status(404);
     console.log(err);
@@ -200,7 +221,10 @@ exports.createComment = async (req, res) => {
 //TOPIC
 exports.getTopics = async (req, res) => {
   try {
-    const result = await Topic.find().populate("posts").exec();
+    const result = await Topic.find().populate({
+      path: "posts",
+      populate: { path: "author" }
+    }).exec();
     res.send(result);
     res.status(200);
   } catch (err) {

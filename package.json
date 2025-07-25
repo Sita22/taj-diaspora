@@ -17,5 +17,11 @@
   "bugs": {
     "url": "https://github.com/Sita22/tajiks-abroad/issues"
   },
-  "homepage": "https://github.com/Sita22/tajiks-abroad#readme"
+  "homepage": "https://github.com/Sita22/tajiks-abroad#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.31.0",
+    "eslint": "^9.31.0",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.3.0"
+  }
 }

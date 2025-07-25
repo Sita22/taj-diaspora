@@ -16,7 +16,7 @@ export default function Home({ topics, user, posts, setPosts }) {
         <Select topics={topics} setPosts={setPosts} />
       </div>
       <div className='postlist'>
-        <PostList posts={posts} />
+        <PostList posts={posts} setPosts={setPosts} />
       </div>
     </>
   )
