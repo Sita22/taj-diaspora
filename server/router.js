@@ -33,8 +33,8 @@ router.post('/community', createCommunity);
 router.get('/posts', getPosts);
 router.get('/posts/:postId', getPostById);
 router.post('/:topic/posts', createPost);
-router.put('/posts/:postId/increment', updatePostLike);
-router.put('/posts/:postId/decrement', updatePostLike);
+router.put('/posts/:postId/:userId/increment', updatePostLike);
+router.put('/posts/:postId/:userId/decrement', updatePostLike);
 
 //Comment
 router.get('/comments', getComments);

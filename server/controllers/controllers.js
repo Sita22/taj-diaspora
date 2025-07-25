@@ -168,12 +168,14 @@ exports.getPostById = async (req, res) => {
 exports.updatePostLike = async (req, res) => {
   try {
     const id = req.params["postId"];
+    const userId = req.params["userId"];
+    console.log(userId)
     if (req.path.includes("increment")) {
-      const result = await Post.findOneAndUpdate({ _id: id }, { $inc: { likes: 1 } }, { new: true }).populate("author").exec();
+      const result = await Post.findOneAndUpdate({ _id: id }, { $push: { likes: userId} }, { new: true }).populate("author").exec();
       res.send(result);
       res.status(200);
     } else if (req.path.includes("decrement")) {
-      const result = await Post.findOneAndUpdate({ _id: id }, { $inc: { likes: -1 } }, { new: true }).populate("author").exec();
+      const result = await Post.findOneAndUpdate({ _id: id }, { $pull: { likes: userId } }, { new: true }).populate("author").exec();
       res.send(result);
       res.status(200);
     }

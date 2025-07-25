@@ -4,12 +4,12 @@ import { formatDistanceToNow } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faHeart } from '@fortawesome/free-solid-svg-icons'
 
-export default function PostList({ posts, setPosts }) {
+export default function PostList({ posts, setPosts, user }) {
   const baseUrl = "http://localhost:3000/";
 
   async function updateLikeStatus(action, postId) {
     try {
-      const data = await fetch(`${baseUrl}posts/${postId}/${action}`, {
+      const data = await fetch(`${baseUrl}posts/${postId}/${user._id}/${action}`, {
         method: "PUT"
       });
       if (!data.ok) {
@@ -24,14 +24,14 @@ export default function PostList({ posts, setPosts }) {
 
   async function handleLike(post) {
     let action = "";
-    if (!post.liked) {
+    if (!post.likes.includes(user._id)) {
       action = "increment";
       const updatedPost = await updateLikeStatus(action, post._id);
-      setPosts((prevList) => ({ ...prevList, [updatedPost._id]: {...updatedPost, liked: true} }));
+      setPosts((prevList) => ({ ...prevList, [updatedPost._id]: { ...updatedPost } }));
     } else {
       action = "decrement";
       const updatedPost = await updateLikeStatus(action, post._id);
-      setPosts((prevList) => ({ ...prevList, [updatedPost._id]: {...updatedPost, liked: false} }));
+      setPosts((prevList) => ({ ...prevList, [updatedPost._id]: { ...updatedPost } }));
     }
   }
 
@@ -52,7 +52,7 @@ export default function PostList({ posts, setPosts }) {
                     <p>{post.author.username}</p>
                   </div>
                   <div className='post-details'>
-                    <p><FontAwesomeIcon icon={faHeart} color={post.liked ? "#cb2a2a" : "#3d4050"} onClick={() => handleLike(post)} />{post.likes}</p>
+                    <p><FontAwesomeIcon icon={faHeart} color={post.likes.includes(user._id) ? "#cb2a2a" : "#3d4050"} onClick={() => handleLike(post)} />{post.likes.length}</p>
                     <p> <FontAwesomeIcon icon={faComment} color="#3d4050" />{post.comments.length}</p>
                     <p>{formatDistanceToNow(new Date(post.timestamp))} ago</p>
                   </div>
