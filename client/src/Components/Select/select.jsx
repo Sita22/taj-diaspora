@@ -5,36 +5,33 @@ import './select.css'
 export default function Select({ topics, setPosts }) {
   const [selectedTopic, setSelectedTopic] = useState("All");
 
-  function handleChange(event) {
-    const value = event.target.value;
-    setSelectedTopic(value);
-    if (value === "all") {
+  function handleChange(topicTitle) {
+    setSelectedTopic(topicTitle);
+    if (topicTitle === "All") {
       async function fetchData() {
         const postList = await getAllPosts();
         setPosts(postList);
       }
       fetchData();
-    } else if (value !== "All") {
-      const selectedTopicData = topics.filter(topic => topic.title === value);
+    } else if (topicTitle !== "All") {
+      const selectedTopicData = topics.filter(topic => topic.title === topicTitle);
       setPosts(selectedTopicData[0].posts);
     }
   }
 
   return (
     <>
-      <div className='dropdowns'>
-        <div className='topics-container'>
-          <label htmlFor="">Topics
-            <select value={selectedTopic} onChange={handleChange}>
-              <option value="all">All</option>
-              {
-                topics.map(topic => {
-                  return <option key={topic._id} value={topic.title}>{topic.title}</option>
-                })
-              }
-            </select>
-          </label>
-        </div>
+      <div className="topic-filter">
+        <div className={`topic-pill ${selectedTopic === "All" ? "active" : ""}`}
+          onClick={() => handleChange("All")}
+        >All</div>
+        {
+          topics.map(topic => {
+            return <div className={`topic-pill ${selectedTopic === topic.title ? "active" : ""}`}
+              key={topic._id}
+              onClick={() => handleChange(topic.title)}>{topic.title}</div>
+          })
+        }
       </div>
     </>
   )

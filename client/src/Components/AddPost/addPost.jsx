@@ -55,7 +55,11 @@ export default function AddPost({ setPosts, topics, user }) {
       <div className="add-post-container">
         {
           open &&
-          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+          <Snackbar
+            open={open}
+            autoHideDuration={6000}
+            onClose={handleClose}
+            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
             <Alert
               onClose={handleClose}
               severity="success"
@@ -77,9 +81,19 @@ export default function AddPost({ setPosts, topics, user }) {
             }
           </select>
           <label htmlFor="">Title</label>
-          <input type="text" value={title} name="title" onChange={handleTitle} placeholder="Insert a title..." required />
+          <input
+            type="text"
+            value={title}
+            name="title"
+            onChange={handleTitle}
+            placeholder="Insert a title..."
+            required />
           <label htmlFor="">Content</label>
-          <textarea value={content} onChange={handleContent} rows={7} placeholder="Insert a content..." />
+          <textarea
+            value={content}
+            onChange={handleContent}
+            rows={7}
+            placeholder="Insert a content..." />
           <button type="submit">Create</button>
         </form>
       </div>

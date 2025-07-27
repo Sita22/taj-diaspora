@@ -9,3 +9,34 @@
   border: 1px solid #f08c00;
   border-radius: 5px;
 }
+
+
+.topic-filter {
+  background: #ffffff;
+  padding: 12px 20px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.topic-filter::-webkit-scrollbar {
+  display: none;
+}
+
+.topic-pill {
+  padding: 8px 18px;
+  background: #f0f0f0;
+  color: #2c2c2c;
+  border-radius: 20px;
+  font-size: 13px;
+  white-space: nowrap;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.topic-pill.active {
+  background: #2c2c2c;
+  color: white;
+}

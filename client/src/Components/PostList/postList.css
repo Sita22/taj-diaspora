@@ -1,16 +1,9 @@
 .post-teaser {
-  border: 1px solid #1C39BB;
+  border: 1px solid #2c2c2c;
   border-radius: 5px;
   margin-bottom: 20px;
   margin-top: 20px;
   padding: 10px;
-}
-
-.post-details {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding-top: 5px;
 }
 
 .post-teaser p {
@@ -27,7 +20,51 @@
   color: black;
 }
 
-.title-author {
+.post-details {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding-top: 5px;
+}
+
+.post-details p {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+
+.title-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.title-content h3,
+.title-content p {
+  margin-bottom: 12px;
+}
+
+.title-content p {
+  width: 43ch;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.user-details {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.user-details img {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border: 1px solid rgb(188, 188, 188);
+  margin-right: 12px;
+}
+
+.user-details p {
+  color: #b0b0b0
 }

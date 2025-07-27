@@ -45,16 +45,36 @@ export default function PostList({ posts, setPosts, user }) {
             .map(post => {
               return (
                 <div key={post._id} className='post-teaser'>
-                  <div className='title-author'>
+                  <div className='user-details'>
+                    <img src="/avatar.jpg" alt="" />
+                    <div>
+                      <h4>{post.author.username}</h4>
+                      <p>{formatDistanceToNow(new Date(post.timestamp))} ago</p>
+                    </div>
+                  </div>
+                  <div className='title-content'>
                     <Link to={`/posts/${post._id}`}>
-                      <h4>{post.title}</h4>
+                      <h3>{post.title}</h3>
                     </Link>
-                    <p>{post.author.username}</p>
+                    <p>{post.content}</p>
                   </div>
                   <div className='post-details'>
-                    <p><FontAwesomeIcon icon={faHeart} color={post.likes.includes(user._id) ? "#cb2a2a" : "#3d4050"} onClick={() => handleLike(post)} />{post.likes.length}</p>
-                    <p> <FontAwesomeIcon icon={faComment} color="#3d4050" />{post.comments.length}</p>
-                    <p>{formatDistanceToNow(new Date(post.timestamp))} ago</p>
+                    <p>
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        size="lg"
+                        color={post.likes.includes(user._id) ? "#cb2a2a" : "#2c2c2c"}
+                        onClick={() => handleLike(post)} />
+                      {post.likes.length}
+                    </p>
+                    <p>
+                      <FontAwesomeIcon
+                        icon={faComment}
+                        size="lg"
+                        color="#2c2c2c"
+                      />
+                      {post.comments.length}
+                    </p>
                   </div>
                 </div>
               )

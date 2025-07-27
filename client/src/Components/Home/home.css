@@ -1,17 +1,20 @@
 .dropdowns {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  align-items: start;
+  justify-content: flex-start;
 }
 
-.local-community {
-  border: 1px solid #f08c00;
-  background-color: #ffaa22;
-  border-radius: 5px;
-  width: 160px;
-  height: 35px;
+.location-bar {
+  padding: 0 20px 12px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin: 5px;
+  gap: 6px;
+  font-size: 13px;
+  color: #b0b0b0;
+}
+
+.location-bar svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
 }
