@@ -2,7 +2,7 @@ import { useState, useEffect, createContext } from 'react'
 import './App.css'
 import { Routes, Route } from 'react-router'
 import Home from './Components/Home/home.jsx'
-import Post from './Components/Post/post.jsx'
+import PostItem from './Components/PostItem/postItem.jsx'
 import AddPost from './Components/AddPost/addPost.jsx'
 import { getAllUsers, getUser, getCommunities } from './Services/ApiClient.js'
 import Nav from './Components/Navigation/nav.jsx'
@@ -65,7 +65,7 @@ function App() {
           ) : (
             <Route path="/" element={<Home setPosts={setPosts} topics={topics} user={user} posts={posts} />} />
           )}
-          <Route path="/posts/:postId" element={<Post user={user} setPosts={setPosts} />} />
+          <Route path="/posts/:postId" element={<PostItem user={user} setPosts={setPosts} />} />
           <Route path="/user" element={<UserDetails user={user} setUser={setUser} />} />
           <Route path="/posts/add" element={<AddPost setPosts={setPosts} topics={topics} user={user} />} />
         </Routes>

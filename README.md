@@ -1,6 +1,6 @@
 ## Project name
 
-Tajik Diaspora or Tajiks Abroad
+TajDiaspora
 
 ## One liner
 

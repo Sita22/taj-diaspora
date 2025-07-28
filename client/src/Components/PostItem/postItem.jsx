@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router"
 import { addComment } from "../../Services/ApiClient";
-import './post.css'
+import './postItem.css'
 import { formatDistanceToNow } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faHeart, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
-export default function Post({ setPosts, user }) {
+export default function PostItem({ setPosts, user }) {
   let params = useParams();
   const baseUrl = "http://localhost:3000/";
   const [post, setPost] = useState({});
