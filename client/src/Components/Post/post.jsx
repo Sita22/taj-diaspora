@@ -38,10 +38,12 @@ export default function Post({ setPosts, user }) {
     if (!post.likes.includes(user._id)) {
       action = "increment";
       const updatedPost = await updateLikeStatus(action, post._id);
+      setPost(updatedPost);
       setPosts((prevList) => ({ ...prevList, [updatedPost._id]: { ...updatedPost } }));
     } else {
       action = "decrement";
       const updatedPost = await updateLikeStatus(action, post._id);
+      setPost(updatedPost);
       setPosts((prevList) => ({ ...prevList, [updatedPost._id]: { ...updatedPost } }));
     }
   }
