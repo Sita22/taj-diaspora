@@ -95,7 +95,10 @@ exports.getCommunities = async (req, res) => {
       path: "topics",
       populate: {
         path: "posts",
-        populate: { path: "author" }
+        populate: [
+          { path: "author" },
+          { path: "topicId" }
+        ]
       }
     }).exec();
     res.send(result);
@@ -127,7 +130,10 @@ exports.createCommunity = async (req, res) => {
 //POSTS
 exports.getPosts = async (req, res) => {
   try {
-    const result = await Post.find().populate("author").populate("comments").exec();
+    const result = await Post.find()
+      .populate("author")
+      .populate("comments")
+      .exec();
     res.send(result);
     res.status(200);
   } catch (err) {
@@ -160,11 +166,17 @@ exports.updatePostLike = async (req, res) => {
     const userId = req.params["userId"];
     console.log(userId)
     if (req.path.includes("increment")) {
-      const result = await Post.findOneAndUpdate({ _id: id }, { $push: { likes: userId } }, { new: true }).populate("author").exec();
+      const result = await Post.findOneAndUpdate({ _id: id }, { $push: { likes: userId } }, { new: true })
+        .populate("author")
+        .populate("topicId")
+        .exec();
       res.send(result);
       res.status(200);
     } else if (req.path.includes("decrement")) {
-      const result = await Post.findOneAndUpdate({ _id: id }, { $pull: { likes: userId } }, { new: true }).populate("author").exec();
+      const result = await Post.findOneAndUpdate({ _id: id }, { $pull: { likes: userId } }, { new: true })
+        .populate("author")
+        .populate("topicId")
+        .exec();
       res.send(result);
       res.status(200);
     }

@@ -38,7 +38,7 @@ export default function PostList({ posts, setPosts, user }) {
   return (
     <>
       {
-        !posts && posts.length === 0 ?
+        !posts ?
           <p>
             <FontAwesomeIcon icon={faCircleInfo} color="#69140e" />
             Not posts yet
@@ -48,11 +48,16 @@ export default function PostList({ posts, setPosts, user }) {
             .map(post => {
               return (
                 <div key={post._id} className='post-teaser'>
-                  <div className='user-details'>
-                    <img src="/avatar.jpg" alt="" />
-                    <div>
-                      <h4>{post?.author?.username}</h4>
-                      <p>{formatDistanceToNow(new Date(post.timestamp))} ago</p>
+                  <div className='above-post-text'>
+                    <div className='user-details'>
+                      <img src="/avatar.jpg" alt="" />
+                      <div>
+                        <h4>{post?.author?.username}</h4>
+                        <p>{formatDistanceToNow(new Date(post.timestamp))} ago</p>
+                      </div>
+                    </div>
+                    <div className='topic'>
+                      {post?.topicId?.title}
                     </div>
                   </div>
                   <div className='title-content'>

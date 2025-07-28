@@ -67,7 +67,7 @@ export default function AddPost({ setPosts, topics, user }) {
               onClose={handleClose}
               severity="success"
               variant="filled"
-              sx={{ width: '100%', backgroundColor: '#2c2c2c' }}
+              sx={{ width: '100%', backgroundColor: '#d58936' }}
             >
             Your post was successfully created!
           </Alert>
