@@ -5,16 +5,16 @@
 }
 
 .location-bar {
-  padding: 0 20px 12px;
+  padding: 0 0px 12px;
   display: flex;
   align-items: center;
   gap: 6px;
   font-size: 13px;
-  color: #b0b0b0;
+  color: #5c6d70;
 }
 
 .location-bar svg {
   width: 14px;
   height: 14px;
-  fill: currentColor;
+  fill: #5c6d70;
 }

@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import './addPost.css';
+import { Link } from "react-router";
 import { addPost } from "../../Services/ApiClient";
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 export default function AddPost({ setPosts, topics, user }) {
 
@@ -64,39 +67,47 @@ export default function AddPost({ setPosts, topics, user }) {
               onClose={handleClose}
               severity="success"
               variant="filled"
-              sx={{ width: '100%' }}
+              sx={{ width: '100%', backgroundColor: '#2c2c2c' }}
             >
-              This is a success Alert inside a Snackbar!
-            </Alert>
+            Your post was successfully created!
+          </Alert>
           </Snackbar>
         }
-        <h1>Add a new post</h1>
-        <form className="post-form" action="" onSubmit={handleOnSubmit}>
-          <label htmlFor="">Select a topic</label>
-          <select value={selectedTopic} onChange={handleTopic}>
-            {
-              topics.map(topic => {
-                return <option key={topic._id} value={topic._id}>{topic.title}</option>
-              })
-            }
-          </select>
-          <label htmlFor="">Title</label>
-          <input
-            type="text"
-            value={title}
-            name="title"
-            onChange={handleTitle}
-            placeholder="Insert a title..."
-            required />
-          <label htmlFor="">Content</label>
-          <textarea
-            value={content}
-            onChange={handleContent}
-            rows={7}
-            placeholder="Insert a content..." />
-          <button type="submit">Create</button>
-        </form>
+      <div className="go-back">
+        <Link to={"/"}>
+          <FontAwesomeIcon icon={faChevronLeft} />
+        </Link>
+        <h4>Post</h4>
       </div>
+      <h1>Add a new post</h1>
+      <form className="post-form" action="" onSubmit={handleOnSubmit}>
+        <label htmlFor="">Select a topic</label>
+        <select value={selectedTopic} onChange={handleTopic}>
+          {
+            topics.map(topic => {
+              return <option key={topic._id} value={topic._id}>{topic.title}</option>
+            })
+          }
+        </select>
+        <label htmlFor="">Title</label>
+        <input
+          type="text"
+          value={title}
+          name="title"
+          onChange={handleTitle}
+          placeholder="Insert a title..."
+          required />
+        <label htmlFor="">Content</label>
+        <textarea
+          value={content}
+          onChange={handleContent}
+          rows={7}
+          placeholder="Insert a content..." />
+        <div className="button-container">
+          <button type="submit">Create</button>
+        </div>
+      </form>
+    </div >
     </>
   )
 }

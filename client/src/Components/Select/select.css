@@ -1,19 +1,7 @@
-.dropdowns {
-  display: flex;
-}
-
-.topics-container select {
-  width: 160px;
-  height: 35px;
-  background-color: #ffaa22;
-  border: 1px solid #f08c00;
-  border-radius: 5px;
-}
-
-
 .topic-filter {
   background: #ffffff;
-  padding: 12px 20px;
+  padding-top: 12px;
+  padding-bottom: 20px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   display: flex;
@@ -27,7 +15,7 @@
 
 .topic-pill {
   padding: 8px 18px;
-  background: #f0f0f0;
+  background: #eadeda;
   color: #2c2c2c;
   border-radius: 20px;
   font-size: 13px;
@@ -37,6 +25,6 @@
 }
 
 .topic-pill.active {
-  background: #2c2c2c;
+  background: #3C1518;
   color: white;
 }

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router"
+import { useParams, Link } from "react-router"
 import { addComment } from "../../Services/ApiClient";
 import './post.css'
 import { formatDistanceToNow } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faComment, faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faComment, faHeart, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
 export default function Post({ setPosts, user }) {
   let params = useParams();
@@ -46,10 +46,10 @@ export default function Post({ setPosts, user }) {
     }
   }
 
-  //TODO display status after submitting form
   async function handleOnSubmit(event) {
     event.preventDefault();
     const newComment = await addComment(content, post._id, user._id);
+    //AI support on the usage of the spread operators
     setPost(prevPost => ({
       ...prevPost,
       comments: [
@@ -79,20 +79,29 @@ export default function Post({ setPosts, user }) {
     }
   }, [params.postId])
 
+  //suggestion from AI to use ?-marks since I was getting errors for the post and comment to be undefined
   return (
     <>
       {
         !loading ? (
           <div className="post-container">
-            <div className='user-details'>
-              <img src="/avatar.jpg" alt="" />
-              <div>
-                <h4>{post.author?.username}</h4>
-                <p>{post?.timestamp ? formatDistanceToNow(new Date(post?.timestamp)) : ""} ago</p>
-              </div>
+            <div className="go-back">
+              <Link to={"/"}>
+                <FontAwesomeIcon icon={faChevronLeft} />
+              </Link>
+              <h4>Post</h4>
             </div>
-            <h1>{post.title}</h1>
-            <p>{post.content}</p>
+            <div className="post-content">
+              <div className='user-details'>
+                <img src="/avatar.jpg" alt="" />
+                <div>
+                  <h4>{post.author?.username}</h4>
+                  <p>{post?.timestamp ? formatDistanceToNow(new Date(post?.timestamp)) : ""} ago</p>
+                </div>
+              </div>
+              <h2>{post.title}</h2>
+              <p>{post.content}</p>
+            </div>
             <div className='post-details'>
               <p>
                 <FontAwesomeIcon
@@ -115,29 +124,39 @@ export default function Post({ setPosts, user }) {
               post?.comments && post?.comments?.length > 0
                 ? post.comments.map(comment => {
                   return (
-                    <div key={comment._id}>
+                    <div key={comment._id} className="comment-container">
                       <h3>Comments</h3>
-                      <p>{comment.content}</p>
-                      <p>{comment.author.username}</p>
+                      <div className='user-details'>
+                        <img src="/avatar.jpg" alt="" />
+                        <div className="comment-details">
+                          <h4>{comment.author.username}</h4>
+                          <p className="comment-content">{comment.content}</p>
+                          <p className="comment-date">{post?.timestamp ? formatDistanceToNow(new Date(post?.timestamp)) : ""} ago</p>
+                        </div>
+                      </div>
                     </div>
                   )
                 })
-                : <p>No comments yet</p>
+                : <div className="comment-container">
+                  <h3>No comments yet</h3>
+                </div>
             }
             <div className="add-comment-container">
               <h4>Add a new comment</h4>
               <form className="comment-form" action="" onSubmit={handleOnSubmit}>
                 <textarea value={content} onChange={handleContent} rows={7} placeholder="Insert a content..." />
-                <button type="submit">Create</button>
+                <div className="button-container">
+                  <button type="submit">Create</button>
+                </div>
               </form>
             </div>
           </div>
-        ) : 
-        (
-          <p>Loading...</p>
-        )
-      
-    }
+        ) :
+          (
+            <p>Loading...</p>
+          )
+
+      }
 
     </>
   )

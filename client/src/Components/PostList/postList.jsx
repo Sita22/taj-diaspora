@@ -48,7 +48,7 @@ export default function PostList({ posts, setPosts, user }) {
                   <div className='user-details'>
                     <img src="/avatar.jpg" alt="" />
                     <div>
-                      <h4>{post.author.username}</h4>
+                      <h4>{post?.author?.username}</h4>
                       <p>{formatDistanceToNow(new Date(post.timestamp))} ago</p>
                     </div>
                   </div>
@@ -63,7 +63,7 @@ export default function PostList({ posts, setPosts, user }) {
                       <FontAwesomeIcon
                         icon={faHeart}
                         size="lg"
-                        color={post.likes.includes(user._id) ? "#cb2a2a" : "#2c2c2c"}
+                        color={post.likes.includes(user._id) ? "#a44200" : "#3C1518"}
                         onClick={() => handleLike(post)} />
                       {post.likes.length}
                     </p>
@@ -71,7 +71,7 @@ export default function PostList({ posts, setPosts, user }) {
                       <FontAwesomeIcon
                         icon={faComment}
                         size="lg"
-                        color="#2c2c2c"
+                        color="#3C1518"
                       />
                       {post.comments.length}
                     </p>

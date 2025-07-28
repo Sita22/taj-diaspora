@@ -2,3 +2,62 @@
   display: flex;
   flex-direction: column;
 }
+
+.post-form textarea {
+  margin-bottom: 15px;
+}
+
+.post-form label {
+  margin-bottom: 8px;
+  margin-top: 10px;
+}
+
+.post-form input {
+  height: 35px;
+  padding: 5px;
+  border: 2px solid #f0f0f0;
+  border-radius: 5px;
+}
+
+.post-form select {
+  height: 35px;
+  padding: 5px;
+  border: 2px solid #f0f0f0;
+  border-radius: 5px;
+}
+
+.post-form textarea {
+  padding: 8px;
+  border: 2px solid #f0f0f0;
+  border-radius: 5px;
+  outline: none;
+  resize: none;
+  overflow: auto;
+}
+
+
+.post-form button {
+  height: 40px;
+  width: 300px;
+  background-color: #2c2c2c;
+  color: white;
+  border-radius: 25px;
+  border: none;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post-form button:hover {
+  height: 40px;
+  width: 300px;
+  background-color: #f0f0f0;
+  color: #2c2c2c;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}

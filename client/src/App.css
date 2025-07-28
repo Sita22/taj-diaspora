@@ -2,3 +2,12 @@
   background-image: url("/DesignPattern.jpeg");
   margin: 0;
 } */
+
+
+.display {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}

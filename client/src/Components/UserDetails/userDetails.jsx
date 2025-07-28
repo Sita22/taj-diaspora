@@ -1,8 +1,9 @@
 import './userDetails.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCamera } from '@fortawesome/free-solid-svg-icons'
+import { faCamera, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react'
 import { updateUser } from '../../Services/ApiClient'
+import { Link } from 'react-router'
 
 export default function UserDetails({ user, setUser }) {
 
@@ -40,40 +41,52 @@ export default function UserDetails({ user, setUser }) {
 
   return (
     <>
+      <div className="go-back">
+        <Link to={"/"}>
+          <FontAwesomeIcon icon={faChevronLeft} />
+        </Link>
+        <h4>Profile</h4>
+      </div>
       {
         !edit ? (
           <div className='profile-container'>
-            <h1>My profile</h1>
             <div className='img-block'>
               <FontAwesomeIcon icon={faCamera} className='camera-icon' />
               <img src="/avatar.jpg" alt="" width={120} />
+              <h2>{user.name}</h2>
+              <p className='label'>{user.username}</p>
             </div>
-            <p>Username</p>
-            <p>{user.username}</p>
-            <p>Email</p>
-            <p>{user.email}</p>
-            <p>City</p>
-            <p>{city}</p>
-            <p>Country</p>
-            <p>{country}</p>
-            <button type="submit" onClick={handleSubmit}>Edit profile</button>
+            <div className='details-block'>
+              <p className='label'>Email</p>
+              <p className='value'>{user.email}</p>
+              <p className='label'>City</p>
+              <p className='value'>{city}</p>
+              <p className='label'>Country</p>
+              <p className='value'>{country}</p>
+            </div>
+            <div className='button-container'>
+              <button type="submit" onClick={handleSubmit}>Edit profile</button>
+            </div>
           </div>
         ) : (
           <div className='profile-container'>
-            <h1>Edit my profile</h1>
             <div className='img-block'>
               <FontAwesomeIcon icon={faCamera} className='camera-icon' />
               <img src="/avatar.jpg" alt="" width={120} />
+              <h2>{user.name}</h2>
+              <p className='label'>{user.username}</p>
             </div>
-            <p>Username</p>
-            <input type="text" id="username" value={user.username} disabled={true} readOnly />
-            <p>Email</p>
-            <input type="text" id="email" value={user.email} disabled={true} readOnly />
-            <p>City</p>
-            <input type="text" id="city" value={city} onChange={handleNewCity} />
-            <p>Country</p>
-            <input type="text" id="country" value={country} onChange={handleNewCountry} />
-            <button type="submit" onClick={handleSave}>Save</button>
+            <div className='details-block'>
+              <p className='label'>Email (cannot be changed)</p>
+              <input type="text" id="email" value={user.email} disabled={true} readOnly />
+              <p className='label'>City</p>
+              <input type="text" id="city" value={city} onChange={handleNewCity} />
+              <p className='label'>Country</p>
+              <input type="text" id="country" value={country} onChange={handleNewCountry} />
+            </div>
+            <div className='button-container'>
+              <button type="submit" onClick={handleSave}>Save</button>
+            </div>
           </div>
         )
       }

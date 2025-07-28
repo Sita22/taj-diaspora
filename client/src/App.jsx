@@ -7,6 +7,7 @@ import AddPost from './Components/AddPost/addPost.jsx'
 import { getAllPosts, getAllTopics, getAllUsers, getUser } from './Services/ApiClient.js'
 import Nav from './Components/Navigation/nav.jsx'
 import UserDetails from './Components/UserDetails/userDetails.jsx'
+import { useLocation } from 'react-router'
 
 const AppContext = createContext(null);
 
@@ -16,7 +17,9 @@ function App() {
   const [topics, setTopics] = useState([]);
   const [user, setUser] = useState({});
   const [users, setUsers] = useState([]);
+  const location = useLocation();
 
+  const displayMainNav = location.pathname === "/";
 
   const updateState = (list) => {
     setPosts((prevPosts) => {
@@ -46,7 +49,7 @@ function App() {
   return (
     <>
       <AppContext.Provider value={{ user, users }}>
-        <div className='nav-container'>
+        <div className={`nav-container ${displayMainNav ? "display" : "hidden"}`}>
           <Nav user={user} />
         </div>
         <Routes>
@@ -56,7 +59,7 @@ function App() {
             <Route path="/" element={<Home setPosts={setPosts} topics={topics} user={user} posts={posts} />} />
           )}
           <Route path="/posts/:postId" element={<Post user={user} setPosts={setPosts} />} />
-          <Route path="/user" element={<UserDetails user={user} setUser={setUser}  />} />
+          <Route path="/user" element={<UserDetails user={user} setUser={setUser} />} />
           <Route path="/posts/add" element={<AddPost setPosts={setPosts} topics={topics} user={user} />} />
         </Routes>
       </AppContext.Provider>
