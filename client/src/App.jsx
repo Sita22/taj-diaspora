@@ -50,7 +50,7 @@ function App() {
     <>
       <AppContext.Provider value={{ user, users }}>
         <div className={`nav-container ${displayMainNav ? "display" : "hidden"}`}>
-          <Nav user={user} />
+          <Nav user={user} posts={posts} />
         </div>
         <Routes>
           {loading ? (

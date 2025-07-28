@@ -39,10 +39,11 @@
 .post-form button {
   height: 40px;
   width: 300px;
-  background-color: #2c2c2c;
+  background-color: #69140e;
   color: white;
   border-radius: 25px;
   border: none;
+  transition: all 0.3s ease;
 }
 
 .button-container {
@@ -51,13 +52,7 @@
   justify-content: center;
 }
 
-.post-form button:hover {
-  height: 40px;
-  width: 300px;
-  background-color: #f0f0f0;
-  color: #2c2c2c;
-  border-radius: 25px;
-  border: none;
+form.post-form button:hover {
+  background-color: #d58936;
   cursor: pointer;
-  transition: all 0.3s;
 }

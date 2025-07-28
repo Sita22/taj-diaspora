@@ -22,16 +22,87 @@ nav {
 
 .left-nav {
   width: 130px;
-  height: 80px;
+  height: 90px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/*.left-nav img {
-  width: 150px;    
-  height: 150px;
-  object-fit: cover;
-  display: block;
-} */
+.nav-list-item a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  gap: 5px;
+}
+
+.nav-list {
+  margin-left: 10px !important;
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
+}
+
+.drawer {
+  cursor: pointer !important;
+}
+
+.css-y7ab46-MuiPaper-root-MuiDrawer-paper {
+  background-color: #3c1518 !important;
+}
+
+.search-icon,
+.back-icon {
+  cursor: pointer;
+}
+
+.search-list {
+  background-color: #3c1518;
+  position: absolute;
+  border-radius: 3px;
+}
+
+.search-container {
+  position: relative;
+}
+
+.search-container a {
+  text-decoration: none;
+  color: white;
+  width: 300px;
+}
+
+.search-container a:hover {
+  color: #8c8c8c;
+}
+
+.search-container ul {
+  width: 100%;
+  list-style-type: none;
+}
+
+.search-container li {
+  height: 30px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.search-container input {
+  height: 35px;
+  width: 300px;
+  padding: 10px;
+  border: 2px solid #f0f0f0;
+  border-radius: 25px;
+  margin-bottom: 10px;
+}
+
+.add-post-box {
+  width: 35px;
+  height: 35px;
+  background-color: #69140e;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}

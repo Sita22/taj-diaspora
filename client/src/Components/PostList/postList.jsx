@@ -63,7 +63,7 @@ export default function PostList({ posts, setPosts, user }) {
                       <FontAwesomeIcon
                         icon={faHeart}
                         size="lg"
-                        color={post.likes.includes(user._id) ? "#a44200" : "#3C1518"}
+                        color={post.likes.includes(user._id) ? "#a44200" : "#2c2c2c"}
                         onClick={() => handleLike(post)} />
                       {post.likes.length}
                     </p>
@@ -71,7 +71,7 @@ export default function PostList({ posts, setPosts, user }) {
                       <FontAwesomeIcon
                         icon={faComment}
                         size="lg"
-                        color="#3C1518"
+                        color="#2c2c2c"
                       />
                       {post.comments.length}
                     </p>

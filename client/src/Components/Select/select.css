@@ -1,5 +1,4 @@
 .topic-filter {
-  background: #ffffff;
   padding-top: 12px;
   padding-bottom: 20px;
   overflow-x: auto;
@@ -15,7 +14,8 @@
 
 .topic-pill {
   padding: 8px 18px;
-  background: #eadeda;
+  background: #EADEDA;
+  border: 1px solid #a44200;
   color: #2c2c2c;
   border-radius: 20px;
   font-size: 13px;
@@ -25,6 +25,12 @@
 }
 
 .topic-pill.active {
-  background: #3C1518;
+  background: #69140e;
   color: white;
+}
+
+.topic-pill:hover {
+  background: #d58936;
+  border: 1px solid #d58936;
+  color: #fff;
 }
