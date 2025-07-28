@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router'
 import Home from './Components/Home/home.jsx'
 import Post from './Components/Post/post.jsx'
 import AddPost from './Components/AddPost/addPost.jsx'
-import { getAllPosts, getAllTopics, getAllUsers, getUser } from './Services/ApiClient.js'
+import { getAllUsers, getUser, getCommunities } from './Services/ApiClient.js'
 import Nav from './Components/Navigation/nav.jsx'
 import UserDetails from './Components/UserDetails/userDetails.jsx'
 import { useLocation } from 'react-router'
@@ -33,13 +33,20 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      const postList = await getAllPosts();
-      const topicList = await getAllTopics();
       const userData = await getUser();
       const usersData = await getAllUsers();
-      updateState(postList);
-      setTopics(topicList);
+      const communitiesData = await getCommunities();
       setUser(userData);
+        const localCommunity = communitiesData.find(comm => comm.city === userData.city);
+      if (localCommunity) {
+        const topicsFromLocalCommunity = localCommunity.topics || [];
+        setTopics(topicsFromLocalCommunity);
+        const allTopics = topicsFromLocalCommunity.flatMap(topic => topic.posts || []);
+        updateState(allTopics);
+      } else {
+        setTopics([]);
+        updateState([]);
+      }
       setUsers(usersData);
       setLoading(false);
     }

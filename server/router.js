@@ -4,7 +4,6 @@ const {
   getUser,
   createUser,
   updateUser,
-  getCommunity,
   getCommunities,
   createCommunity,
   getPosts,
@@ -26,7 +25,6 @@ router.post('/user/update', updateUser);
 
 //Community
 router.get('/community', getCommunities);
-router.get('/community/:userId', getCommunity);
 router.post('/community', createCommunity);
 
 //Posts

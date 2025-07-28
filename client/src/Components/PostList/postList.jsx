@@ -2,7 +2,7 @@ import './postList.css'
 import { Link } from 'react-router';
 import { formatDistanceToNow } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faComment, faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faComment, faHeart, faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 
 export default function PostList({ posts, setPosts, user }) {
   const baseUrl = "http://localhost:3000/";
@@ -38,8 +38,11 @@ export default function PostList({ posts, setPosts, user }) {
   return (
     <>
       {
-        posts.length === 0 ?
-          <p>Not posts yet</p>
+        !posts && posts.length === 0 ?
+          <p>
+            <FontAwesomeIcon icon={faCircleInfo} color="#69140e" />
+            Not posts yet
+          </p>
           :
           Object.values(posts).slice().sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
             .map(post => {

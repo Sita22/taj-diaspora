@@ -22,3 +22,7 @@ input {
 button {
   background-color: #69140e !important;
 }
+
+button:hover {
+  cursor: pointer !important;
+}

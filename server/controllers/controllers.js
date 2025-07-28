@@ -53,7 +53,7 @@ exports.createUser = async (req, res) => {
     }
     const user = await User.insertOne(newUser);
     //! should I return here updated community? Then I need to add {new: true}
-    const updateCommunity = await Community.findOneAndUpdate({ city: city }, { $push: { members: user.id } })
+    await Community.findOneAndUpdate({ city: city }, { $push: { members: user.id } })
     res.status(201).send(user);
   } catch (err) {
     res.status(404);
@@ -81,7 +81,7 @@ exports.updateUser = async (req, res) => {
     }
     user.save();
     //! should I return here updated community? Then I need to add {new: true}
-    const updateCommunity = await Community.findOneAndUpdate({ city: city }, { $addToSet: { members: user._id } })
+    await Community.findOneAndUpdate({ city: city }, { $addToSet: { members: user._id } })
     res.status(201).send(user);
   } catch (err) {
     res.status(404).send(err);
@@ -89,26 +89,15 @@ exports.updateUser = async (req, res) => {
   }
 }
 
-
-
-
-//COMMUNITY
-exports.getCommunity = async (req, res) => {
-  // try {
-  //   const userId = req.params["userId"];
-  //   const result = await Community.findOne({ members.: userId });
-  //   res.send(result);
-  //   res.status(200);
-  // } catch (err) {
-  //   res.status(404);
-  //   console.log(err);
-  //   res.send(err);
-  // }
-}
-
 exports.getCommunities = async (req, res) => {
   try {
-    const result = await Community.find({});
+    const result = await Community.find({}).populate({
+      path: "topics",
+      populate: {
+        path: "posts",
+        populate: { path: "author" }
+      }
+    }).exec();
     res.send(result);
     res.status(200);
   } catch (err) {
@@ -171,7 +160,7 @@ exports.updatePostLike = async (req, res) => {
     const userId = req.params["userId"];
     console.log(userId)
     if (req.path.includes("increment")) {
-      const result = await Post.findOneAndUpdate({ _id: id }, { $push: { likes: userId} }, { new: true }).populate("author").exec();
+      const result = await Post.findOneAndUpdate({ _id: id }, { $push: { likes: userId } }, { new: true }).populate("author").exec();
       res.send(result);
       res.status(200);
     } else if (req.path.includes("decrement")) {
@@ -242,7 +231,7 @@ exports.createComment = async (req, res) => {
     }
     const comment = await Comment.create({ postId, author, content });
     await comment.populate("author");
-    const updatePost = await Post.findOneAndUpdate({ _id: postId }, { $push: { comments: comment._id } });
+    await Post.findOneAndUpdate({ _id: postId }, { $push: { comments: comment._id } });
     res.status(201).send(comment);
   } catch (err) {
     res.status(404);
@@ -284,7 +273,7 @@ exports.createTopic = async (req, res) => {
     }
     console.log(newTopic)
     const topic = await Topic.insertOne(newTopic);
-    const updateCommunity = await Community.findOneAndUpdate({ city: communityTitle }, { $push: { topics: topic.id } })
+    await Community.findOneAndUpdate({ city: communityTitle }, { $push: { topics: topic.id } })
     res.send(topic);
     res.status(201);
   } catch (err) {
