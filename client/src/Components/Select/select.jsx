@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { getAllPosts } from '../../Services/ApiClient';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import './select.css'
@@ -11,8 +10,8 @@ export default function Select({ topics, setPosts }) {
     setSelectedTopic(topicTitle);
     if (topicTitle === "All") {
       async function fetchData() {
-        const postList = await getAllPosts();
-        setPosts(postList);
+        const allPosts = topics.flatMap(topic => topic.posts || []);
+        setPosts(allPosts);
       }
       fetchData();
     } else if (topicTitle !== "All") {

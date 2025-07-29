@@ -37,12 +37,12 @@ function App() {
       const usersData = await getAllUsers();
       const communitiesData = await getCommunities();
       setUser(userData);
-        const localCommunity = communitiesData.find(comm => comm.city === userData.city);
+      const localCommunity = communitiesData.find(comm => comm.city === userData.city);
       if (localCommunity) {
         const topicsFromLocalCommunity = localCommunity.topics || [];
         setTopics(topicsFromLocalCommunity);
-        const allTopics = topicsFromLocalCommunity.flatMap(topic => topic.posts || []);
-        updateState(allTopics);
+        const allPosts = topicsFromLocalCommunity.flatMap(topic => topic.posts || []);
+        updateState(allPosts);
       } else {
         setTopics([]);
         updateState([]);
