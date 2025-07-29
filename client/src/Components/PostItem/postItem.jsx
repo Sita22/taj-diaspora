@@ -97,7 +97,7 @@ export default function PostItem({ setPosts, user }) {
               <div className='user-details'>
                 <img src="/avatar.jpg" alt="" />
                 <div>
-                  <h4>{post.author?.username}</h4>
+                  <h4>{post?.author?.username}</h4>
                   <p>{post?.timestamp ? formatDistanceToNow(new Date(post?.timestamp)) : ""} ago</p>
                 </div>
               </div>
@@ -124,15 +124,15 @@ export default function PostItem({ setPosts, user }) {
             </div>
             {
               post?.comments && post?.comments?.length > 0
-                ? post.comments.map(comment => {
+                ? post?.comments.map(comment => {
                   return (
-                    <div key={comment._id} className="comment-container">
+                    <div key={comment?._id} className="comment-container">
                       <h3>Comments</h3>
                       <div className='user-details'>
                         <img src="/avatar.jpg" alt="" />
                         <div className="comment-details">
-                          <h4>{comment.author.username}</h4>
-                          <p className="comment-content">{comment.content}</p>
+                          <h4>{comment?.author?.username}</h4>
+                          <p className="comment-content">{comment?.content}</p>
                           <p className="comment-date">{post?.timestamp ? formatDistanceToNow(new Date(post?.timestamp)) : ""} ago</p>
                         </div>
                       </div>

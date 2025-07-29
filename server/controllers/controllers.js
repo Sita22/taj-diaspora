@@ -164,11 +164,14 @@ exports.updatePostLike = async (req, res) => {
   try {
     const id = req.params["postId"];
     const userId = req.params["userId"];
-    console.log(userId)
     if (req.path.includes("increment")) {
       const result = await Post.findOneAndUpdate({ _id: id }, { $push: { likes: userId } }, { new: true })
         .populate("author")
         .populate("topicId")
+        .populate({
+          path: "comments",
+          populate: { path: "author" }
+        })
         .exec();
       res.send(result);
       res.status(200);
@@ -176,6 +179,10 @@ exports.updatePostLike = async (req, res) => {
       const result = await Post.findOneAndUpdate({ _id: id }, { $pull: { likes: userId } }, { new: true })
         .populate("author")
         .populate("topicId")
+        .populate({
+          path: "comments",
+          populate: { path: "author" }
+        })
         .exec();
       res.send(result);
       res.status(200);
@@ -190,13 +197,12 @@ exports.updatePostLike = async (req, res) => {
 
 exports.createPost = async (req, res) => {
   try {
-    const topicTitle = req.params["topic"];
-    const { author, title } = req.body;
-    if (!topicTitle || !author || !title) {
+    const { author, title, topicId } = req.body;
+    if (!topicId || !author || !title) {
       res.send("Data is missing: either topic or UserId or title");
       res.status(400);
     }
-    const post = await addPost(req.body, topicTitle);
+    const post = await addPost(req.body, topicId);
     res.send(post);
     res.status(201);
   } catch (err) {

@@ -63,7 +63,7 @@ function App() {
           {loading ? (
             <Route path="/" element={<div>Loading...</div>} />
           ) : (
-            <Route path="/" element={<Home setPosts={setPosts} topics={topics} user={user} posts={posts} />} />
+            <Route path="/" element={<Home setPosts={setPosts} updateState={updateState} topics={topics} user={user} posts={posts} />} />
           )}
           <Route path="/posts/:postId" element={<PostItem user={user} setPosts={setPosts} />} />
           <Route path="/user" element={<UserDetails user={user} setUser={setUser} />} />

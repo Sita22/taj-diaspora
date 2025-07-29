@@ -14,16 +14,17 @@ const postSchema = new mongoose.Schema({
 const Post = mongoose.model('Post', postSchema);
 
 
-const addPost = async (postData, topicTitle) => {
+const addPost = async (postData) => {
   try {
-    const topic = await Topic.findOne({ title: topicTitle });
-    const newPost = {
-      "topicId": topic._id,
-      ...postData
-    }
-    const addedPost = await Post.insertOne(newPost);
-    await Topic.findOneAndUpdate({ title: topicTitle }, { $push: { posts: addedPost._id } })
-    return addedPost;
+    const addedPost = await Post.create(postData);
+    const populatedPost = await Post.findById(addedPost._id)
+    .populate("author")
+    .populate("topicId")
+    .exec();
+    await Topic.findOneAndUpdate({ _id: postData.topicId }, { $push: { posts: addedPost._id } })
+    console.log(addedPost)
+    console.log(populatedPost)
+    return populatedPost;
   } catch (err) {
     console.log(err);
   }

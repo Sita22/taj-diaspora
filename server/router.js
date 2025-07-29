@@ -30,7 +30,7 @@ router.post('/community', createCommunity);
 //Posts
 router.get('/posts', getPosts);
 router.get('/posts/:postId', getPostById);
-router.post('/:topic/posts', createPost);
+router.post('/posts/add', createPost);
 router.put('/posts/:postId/:userId/increment', updatePostLike);
 router.put('/posts/:postId/:userId/decrement', updatePostLike);
 

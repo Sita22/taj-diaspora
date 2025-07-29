@@ -55,10 +55,10 @@ export const getAllPosts = async () => {
 }
 
 
-export const addPost = async (title, content, topic, author) => {
-  const response = await fetch(`${baseUrl}${topic}/posts`, {
+export const addPost = async (title, content, topicId, author) => {
+  const response = await fetch(`${baseUrl}posts/add`, {
     method: "POST",
-    body: JSON.stringify({title, content, author}),
+    body: JSON.stringify({title, content, topicId, author}),
     headers: {
       "Content-Type": "application/json"
     }

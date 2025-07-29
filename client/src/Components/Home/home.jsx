@@ -2,7 +2,7 @@ import Select from '../Select/select'
 import PostList from '../PostList/postList'
 import './home.css'
 
-export default function Home({ topics, user, posts, setPosts }) {
+export default function Home({ topics, user, posts, setPosts, updateState }) {
 
   return (
     <>
@@ -14,7 +14,7 @@ export default function Home({ topics, user, posts, setPosts }) {
           <span>{user.city}, {user.country}</span>
         </div>
       </div>
-      <Select topics={topics} setPosts={setPosts} />
+      <Select topics={topics} updateState={updateState} />
       <div className='postlist'>
         <PostList posts={posts} setPosts={setPosts} user={user} />
       </div>

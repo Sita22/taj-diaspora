@@ -37,17 +37,17 @@ export default function AddPost({ setPosts, topics, user }) {
     const newTopic = event.target.value;
     setSelectedTopic(newTopic);
   }
-
-
+  
+  
   function handleContent(event) {
     const newContent = event.target.value;
     setContent(newContent);
   }
-
+  
   async function handleOnSubmit(event) {
     event.preventDefault();
     const newPost = await addPost(title, content, selectedTopic, user._id);
-    setPosts(oldPosts => ({ ...oldPosts, newPost }));
+    setPosts(oldPosts => ({ ...oldPosts, [newPost._id]: newPost }));
     setSelectedTopic("");
     setTitle("");
     setContent("");
@@ -81,7 +81,7 @@ export default function AddPost({ setPosts, topics, user }) {
       </div>
       <h1>Add a new post</h1>
       <form className="post-form" action="" onSubmit={handleOnSubmit}>
-        <label htmlFor="">Select a topic</label>
+        <label htmlFor="topic">Select a topic</label>
         <select value={selectedTopic} onChange={handleTopic}>
           {
             topics.map(topic => {
@@ -89,7 +89,7 @@ export default function AddPost({ setPosts, topics, user }) {
             })
           }
         </select>
-        <label htmlFor="">Title</label>
+        <label htmlFor="title">Title</label>
         <input
           type="text"
           value={title}
@@ -97,7 +97,7 @@ export default function AddPost({ setPosts, topics, user }) {
           onChange={handleTitle}
           placeholder="Insert a title..."
           required />
-        <label htmlFor="">Content</label>
+        <label htmlFor="content">Content</label>
         <textarea
           value={content}
           onChange={handleContent}

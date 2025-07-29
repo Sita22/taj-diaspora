@@ -4,12 +4,22 @@ import { faCamera, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react'
 import { updateUser } from '../../Services/ApiClient'
 import { Link } from 'react-router'
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 export default function UserDetails({ user, setUser }) {
 
   const [edit, setEdit] = useState(false);
   const [city, setCity] = useState(user.city);
   const [country, setCountry] = useState(user.country);
+  const [open, setOpen] = useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
 
 
   useEffect(() => {
@@ -26,6 +36,12 @@ export default function UserDetails({ user, setUser }) {
     event.preventDefault();
     const updatedUser = await updateUser(user._id, city, country);
     setUser(updatedUser);
+    setEdit(!edit);
+    setOpen(true);
+  }
+
+  async function handleCancel(event) {
+    event.preventDefault();
     setEdit(!edit);
   }
 
@@ -50,6 +66,23 @@ export default function UserDetails({ user, setUser }) {
       {
         !edit ? (
           <div className='profile-container'>
+            {
+              open &&
+              <Snackbar
+                open={open}
+                autoHideDuration={6000}
+                onClose={handleClose}
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+                <Alert
+                  onClose={handleClose}
+                  severity="success"
+                  variant="filled"
+                  sx={{ width: '100%', backgroundColor: '#d58936' }}
+                >
+                  Your post was successfully created!
+                </Alert>
+              </Snackbar>
+            }
             <div className='img-block'>
               <FontAwesomeIcon icon={faCamera} className='camera-icon' />
               <img src="/avatar.jpg" alt="" width={120} />
@@ -65,7 +98,7 @@ export default function UserDetails({ user, setUser }) {
               <p className='value'>{country}</p>
             </div>
             <div className='button-container'>
-              <button type="submit" onClick={handleSubmit}>Edit profile</button>
+              <button className='button-submit' type="submit" onClick={handleSubmit}>Edit profile</button>
             </div>
           </div>
         ) : (
@@ -85,7 +118,10 @@ export default function UserDetails({ user, setUser }) {
               <input type="text" id="country" value={country} onChange={handleNewCountry} />
             </div>
             <div className='button-container'>
-              <button type="submit" onClick={handleSave}>Save</button>
+              <button className='button-submit' type="submit" onClick={handleSave}>Save</button>
+            </div>
+            <div className='cancel-button-container'>
+              <button className='button-submit' type="submit" onClick={handleCancel}>Cancel</button>
             </div>
           </div>
         )

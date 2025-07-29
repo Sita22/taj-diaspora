@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import './select.css'
 
-export default function Select({ topics, setPosts }) {
+export default function Select({ topics, updateState }) {
   const [selectedTopic, setSelectedTopic] = useState("All");
 
   function handleChange(topicTitle) {
@@ -11,12 +11,12 @@ export default function Select({ topics, setPosts }) {
     if (topicTitle === "All") {
       async function fetchData() {
         const allPosts = topics.flatMap(topic => topic.posts || []);
-        setPosts(allPosts);
+        updateState(allPosts);
       }
       fetchData();
     } else if (topicTitle !== "All") {
       const selectedTopicData = topics.filter(topic => topic.title === topicTitle);
-      setPosts(selectedTopicData[0].posts);
+      updateState(selectedTopicData[0].posts);
     }
   }
 
