@@ -22,11 +22,12 @@ nav {
 
 .left-nav {
   width: 130px;
-  height: 90px;
+  height: 75px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 10px;
 }
 
 .nav-list-item a {
@@ -54,6 +55,7 @@ nav {
 .search-icon,
 .back-icon {
   cursor: pointer;
+  transition: all 5s ease;
 }
 
 .search-list {
@@ -64,6 +66,14 @@ nav {
 
 .search-container {
   position: relative;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.seach-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .search-container a {
@@ -83,17 +93,18 @@ nav {
 
 .search-container li {
   height: 30px;
-  padding: 5px;
+  padding: 5px 10px 10px 10px;
   cursor: pointer;
+  height: auto;
 }
 
 .search-container input {
   height: 35px;
-  width: 300px;
+  width: 100%;
   padding: 10px;
   border: 2px solid #f0f0f0;
   border-radius: 25px;
-  margin-bottom: 10px;
+  margin-left: 5px;
 }
 
 .add-post-box {

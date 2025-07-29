@@ -122,12 +122,12 @@ export default function PostItem({ setPosts, user }) {
                 {post?.comments?.length}
               </p>
             </div>
+            <h3 className="comments-title">Comments</h3>
             {
               post?.comments && post?.comments?.length > 0
                 ? post?.comments.map(comment => {
                   return (
                     <div key={comment?._id} className="comment-container">
-                      <h3>Comments</h3>
                       <div className='user-details'>
                         <img src="/avatar.jpg" alt="" />
                         <div className="comment-details">

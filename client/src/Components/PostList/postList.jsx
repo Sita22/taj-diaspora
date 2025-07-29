@@ -2,7 +2,8 @@ import './postList.css'
 import { Link } from 'react-router';
 import { formatDistanceToNow } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faComment, faHeart, faCircleInfo } from '@fortawesome/free-solid-svg-icons'
+import { faComment, faHeart, faCircleInfo, faUser } from '@fortawesome/free-solid-svg-icons'
+import { useEffect } from 'react';
 
 export default function PostList({ posts, setPosts, user }) {
   const baseUrl = "http://localhost:3000/";
@@ -21,6 +22,10 @@ export default function PostList({ posts, setPosts, user }) {
       console.log(err);
     }
   }
+
+  useEffect(() => {
+    console.log(posts)
+  }, [posts, setPosts])
 
   async function handleLike(post) {
     let action = "";
@@ -45,12 +50,20 @@ export default function PostList({ posts, setPosts, user }) {
           </p>
           :
           Object.values(posts).slice().sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
-            .map(post => {
-              return (
-                <div key={post._id} className='post-teaser'>
+          .map(post => {
+            return (
+              <div key={post._id} className='post-teaser'>
                   <div className='above-post-text'>
                     <div className='user-details'>
-                      <img src="/avatar.jpg" alt="" />
+                      {
+                        post.author._id === "6888fdcf0914201a3dbef2ee" ? (
+                          <img src="/avatar.jpg" alt="" />
+                        ) : (
+                          <div className='user-icon'>
+                            <FontAwesomeIcon icon={faUser} color="#69140e" size="lg" />
+                          </div>
+                        )
+                      }
                       <div>
                         <h4>{post?.author?.username}</h4>
                         <p>{formatDistanceToNow(new Date(post.timestamp))} ago</p>

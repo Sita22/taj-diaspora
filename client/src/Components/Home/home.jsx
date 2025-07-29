@@ -14,7 +14,7 @@ export default function Home({ topics, user, posts, setPosts, updateState }) {
           <span>{user.city}, {user.country}</span>
         </div>
       </div>
-      <Select topics={topics} updateState={updateState} />
+      <Select topics={topics} updateState={updateState} setPosts={setPosts} />
       <div className='postlist'>
         <PostList posts={posts} setPosts={setPosts} user={user} />
       </div>

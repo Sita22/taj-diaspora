@@ -7,24 +7,22 @@
   margin-bottom: 15px;
 }
 
-.post-form label {
+.post-form .custom-label {
   margin-bottom: 8px;
   margin-top: 10px;
 }
 
 .post-form input {
-  height: 35px;
+  height: 56px;
   padding: 5px;
   border: 2px solid #f0f0f0;
   border-radius: 5px;
 }
 
-.post-form select {
-  height: 35px;
-  padding: 5px;
-  border: 2px solid #f0f0f0;
-  border-radius: 5px;
+.css-1vvwkv3-MuiFormControl-root {
+  margin: 0 !important;
 }
+
 
 .post-form textarea {
   padding: 8px;

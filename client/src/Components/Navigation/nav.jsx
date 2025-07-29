@@ -57,7 +57,6 @@ export default function Nav({ posts }) {
         return "";
       } else {
         const check = post.title.toLowerCase().includes(value);
-        console.log(check)
         return check;
       }
     });
@@ -73,7 +72,7 @@ export default function Nav({ posts }) {
           <nav>
             <div className='left-nav'>
               <Link to={"/"}>
-                <img src="/low-qual-logo.png" alt="" width={170} />
+                <img src="/logo-transp-back.png" alt="" width={200} />
               </Link>
             </div>
             <div className='right-nav'>
@@ -95,8 +94,10 @@ export default function Nav({ posts }) {
           </nav>
         ) : (
           <div className='search-container'>
-            <FontAwesomeIcon icon={faChevronLeft} color="#69140e" className='back-icon' onClick={() => setDisplaySearchBar(false)} />
-            <input type="text" placeholder="Search posts..." onChange={handleSearch} />
+            <div className='seach-box'>
+              <FontAwesomeIcon icon={faChevronLeft} color="#69140e" className='back-icon' onClick={() => setDisplaySearchBar(false)} />
+              <input type="text" placeholder="Search posts..." onChange={handleSearch} />
+            </div>
             {
               searchList.length > 0 && (
                 <ul className='search-list'>
