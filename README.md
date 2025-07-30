@@ -30,3 +30,50 @@ Connect tajiks abroad by creating a community for their city
 ## Data sources
 
 From a database with MongoDB and Mongoose
+
+## Installation
+
+**Client part:** 
+
+Install all the packages and depenedencies by running:
+
+```
+npm install
+```
+
+Run the dev version: 
+```
+npm run dev
+```
+
+Build the app: 
+
+```
+npm run build
+```
+
+Create a new component: 
+```
+npm run cp [name of the component]
+```
+
+**Server part:**
+
+Install all the packages and depenedencies by running:
+
+```
+npm install
+```
+Run the dev version: 
+```
+nodemon
+```
+
+To delete the mock data in database and create the mock data from scratch: 
+```
+node ./model/seed.js
+```
+
+
+
+
