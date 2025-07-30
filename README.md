@@ -33,6 +33,12 @@ From a database with MongoDB and Mongoose
 
 ## Installation
 
+Clone the repository
+
+```
+git clone git@github.com:Sita22/taj-diaspora.git
+```
+
 **Client part:** 
 
 Install all the packages and depenedencies by running:
@@ -40,6 +46,8 @@ Install all the packages and depenedencies by running:
 ```
 npm install
 ```
+
+The client doesn't have authorisation/Login yet, so for the client to run, update the User Id (_id) to the Services/ApiClient.js file. 
 
 Run the dev version: 
 ```
