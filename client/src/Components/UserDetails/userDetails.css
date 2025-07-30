@@ -16,7 +16,9 @@
 .camera-icon {
   position: absolute;
   top: 105px;
-  left: 235px;
+  left: 225px;
+    margin-bottom: 20px;
+
 }
 
 .readonly-input {

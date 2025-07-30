@@ -4,7 +4,7 @@ import { addComment } from "../../Services/ApiClient";
 import './postItem.css'
 import { formatDistanceToNow } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faComment, faHeart, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { faComment, faHeart, faChevronLeft, faUser } from '@fortawesome/free-solid-svg-icons'
 
 export default function PostItem({ setPosts, user }) {
   let params = useParams();
@@ -95,7 +95,15 @@ export default function PostItem({ setPosts, user }) {
             </div>
             <div className="post-content">
               <div className='user-details'>
-                <img src="/avatar.jpg" alt="" />
+                {
+                  post.author._id === "6888fdcf0914201a3dbef2ee" ? (
+                    <img src="/avatar.jpg" alt="" />
+                  ) : (
+                    <div className='user-icon'>
+                      <FontAwesomeIcon icon={faUser} color="#69140e" size="lg" />
+                    </div>
+                  )
+                }
                 <div>
                   <h4>{post?.author?.username}</h4>
                   <p>{post?.timestamp ? formatDistanceToNow(new Date(post?.timestamp)) : ""} ago</p>
@@ -129,7 +137,15 @@ export default function PostItem({ setPosts, user }) {
                   return (
                     <div key={comment?._id} className="comment-container">
                       <div className='user-details'>
-                        <img src="/avatar.jpg" alt="" />
+                        {
+                          comment.author._id === "6888fdcf0914201a3dbef2ee" ? (
+                            <img src="/avatar.jpg" alt="" />
+                          ) : (
+                            <div className='user-icon'>
+                              <FontAwesomeIcon icon={faUser} color="#69140e" size="lg" />
+                            </div>
+                          )
+                        }
                         <div className="comment-details">
                           <h4>{comment?.author?.username}</h4>
                           <p className="comment-content">{comment?.content}</p>
