@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faHeart, faCircleInfo, faUser } from '@fortawesome/free-solid-svg-icons'
 
 export default function PostList({ posts, setPosts, user }) {
-  const baseUrl = "http://localhost:3000/";
+  const baseUrl = import.meta.env.VITE_BASEURL;
 
   async function updateLikeStatus(action, postId) {
     try {

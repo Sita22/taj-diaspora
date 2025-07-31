@@ -8,7 +8,7 @@ import { faComment, faHeart, faChevronLeft, faUser } from '@fortawesome/free-sol
 
 export default function PostItem({ setPosts, user }) {
   let params = useParams();
-  const baseUrl = "http://localhost:3000/";
+  const baseUrl = import.meta.env.VITE_BASEURL;
   const [post, setPost] = useState({});
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(true);
