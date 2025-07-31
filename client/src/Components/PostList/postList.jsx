@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import { formatDistanceToNow } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faHeart, faCircleInfo, faUser } from '@fortawesome/free-solid-svg-icons'
-import { useEffect } from 'react';
 
 export default function PostList({ posts, setPosts, user }) {
   const baseUrl = "http://localhost:3000/";
@@ -22,10 +21,6 @@ export default function PostList({ posts, setPosts, user }) {
       console.log(err);
     }
   }
-
-  useEffect(() => {
-    console.log(posts)
-  }, [posts, setPosts])
 
   async function handleLike(post) {
     let action = "";

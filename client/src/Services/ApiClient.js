@@ -1,5 +1,5 @@
 const baseUrl = "http://localhost:3000/";
-const userId = "6888fdcf0914201a3dbef2ee";
+const userId = import.meta.env.VITE_USERID;
 
 export const getUser = async () => {
   const response = await fetch(`${baseUrl}user/${userId}`);

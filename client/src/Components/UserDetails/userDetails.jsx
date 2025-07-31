@@ -79,7 +79,7 @@ export default function UserDetails({ user, setUser }) {
                   variant="filled"
                   sx={{ width: '100%', backgroundColor: '#d58936' }}
                 >
-                  Your post was successfully created!
+                  Your profile was successfully updated!
                 </Alert>
               </Snackbar>
             }

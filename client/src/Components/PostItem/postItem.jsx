@@ -51,7 +51,6 @@ export default function PostItem({ setPosts, user }) {
   async function handleOnSubmit(event) {
     event.preventDefault();
     const newComment = await addComment(content, post._id, user._id);
-    //AI support on the usage of the spread operators
     setPost(prevPost => ({
       ...prevPost,
       comments: [
@@ -81,7 +80,6 @@ export default function PostItem({ setPosts, user }) {
     }
   }, [params.postId])
 
-  //suggestion from AI to use ?-marks since I was getting errors for the post and comment to be undefined
   return (
     <>
       {
