@@ -47,7 +47,18 @@ Install all the packages and depenedencies by running:
 npm install
 ```
 
-The client doesn't have authorisation/Login yet, so for the client to run, update the User Id (_id) to the Services/ApiClient.js file. 
+The client doesn't have authorisation/Login yet, so for the client to run, update the User Id (_id) in .env file. Also add Server Url as BaseUrl.
+Create in client -env file and add the values:
+```
+VITE_USERID=
+VITE_BASEURL=
+``` 
+
+e.g. 
+```
+VITE_USERID=12345
+VITE_BASEURL=http://localhost:3000/
+```
 
 Run the dev version: 
 ```
